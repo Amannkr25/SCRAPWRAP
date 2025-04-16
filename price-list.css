@@ -1,0 +1,199 @@
+/* Price List Styles */
+:root {
+    --primary-green: #2ecc71;
+    --secondary-green: #27ae60;
+    --light-green: #a8e6cf;
+    --dark-green: #1d8348;
+    --gradient: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+}
+
+/* Price List Hero Section */
+.price-list-hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #f8f9fa;
+}
+
+.price-list-hero h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.price-list-hero p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Price Grid Layout */
+.price-categories {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+/* Price Card Styling */
+.price-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.price-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.price-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+.card-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.price-info {
+    margin: 1rem 0;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #27ae60;
+    display: block;
+}
+
+.price-card h3 {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin: 0.5rem 0;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.note {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+
+/* Hover Effects */
+.price-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #27ae60, #2ecc71);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.price-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .price-list-hero h1 {
+        font-size: 2rem;
+    }
+
+    .price-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .price-card {
+        padding: 1.5rem;
+    }
+
+    .card-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .price {
+        font-size: 1.2rem;
+    }
+
+    .price-card h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Animation for cards */
+.price-card {
+    animation: fadeInUp 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered animation delay for cards */
+.price-card:nth-child(1) { animation-delay: 0.1s; }
+.price-card:nth-child(2) { animation-delay: 0.2s; }
+.price-card:nth-child(3) { animation-delay: 0.3s; }
+.price-card:nth-child(4) { animation-delay: 0.4s; }
+.price-card:nth-child(5) { animation-delay: 0.5s; }
+.price-card:nth-child(6) { animation-delay: 0.6s; }
+.price-card:nth-child(7) { animation-delay: 0.7s; }
+.price-card:nth-child(8) { animation-delay: 0.8s; }
+.price-card:nth-child(9) { animation-delay: 0.9s; }
+.price-card:nth-child(10) { animation-delay: 1s; }
+
+/* Dark Theme Support */
+@media (prefers-color-scheme: dark) {
+    .price-categories {
+        background: #1a1a1a;
+    }
+
+    .price-card {
+        background: #2a2a2a;
+    }
+
+    .price-card h3 {
+        color: #fff;
+    }
+
+    .price-card .note {
+        color: #aaa;
+    }
+} 

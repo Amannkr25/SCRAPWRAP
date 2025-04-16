@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Pickup - ScrapWrap</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pickup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="ScrapWrap Logo">
+                <span>ScrapWrap</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="price-list.html">Price List</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="tracking-container">
+        <div class="tracking-header">
+            <h1>Track Your Pickup</h1>
+            <p>Enter your pickup ID to track the status</p>
+        </div>
+
+        <div class="tracking-form-container">
+            <form id="trackingForm" class="tracking-form">
+                <div class="form-group">
+                    <label for="pickupId">Pickup ID</label>
+                    <div class="input-group">
+                        <input type="text" id="pickupId" name="pickupId" placeholder="Enter your pickup ID" required>
+                        <button type="submit" class="btn btn-primary">Track</button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="trackingResult" class="tracking-result">
+                <!-- Tracking status will be displayed here -->
+                <div class="tracking-status">
+                    <div class="status-header">
+                        <h3>Pickup #12345</h3>
+                        <span class="status-badge scheduled">Scheduled</span>
+                    </div>
+                    
+                    <div class="status-timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Scheduled</h4>
+                                <p>Pickup scheduled for 15 March, 2024</p>
+                                <span class="timeline-time">10:30 AM</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Pickup Team Assigned</h4>
+                                <p>Your pickup team is on the way</p>
+                                <span class="timeline-time">Pending</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Pickup Completed</h4>
+                                <p>Waste collected successfully</p>
+                                <span class="timeline-time">Pending</span>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>Payment Processed</h4>
+                                <p>Payment credited to your account</p>
+                                <span class="timeline-time">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pickup-details">
+                        <h4>Pickup Details</h4>
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">Date</span>
+                                <span class="detail-value">15 March, 2024</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Time Slot</span>
+                                <span class="detail-value">Morning (9:00 AM - 12:00 PM)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Waste Types</span>
+                                <span class="detail-value">Plastic, Paper, Metal</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Estimated Weight</span>
+                                <span class="detail-value">25 kg</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Address</span>
+                                <span class="detail-value">123 Green Street, Eco City</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Landmark</span>
+                                <span class="detail-value">Near Green Park</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ScrapWrap</h4>
+                <p>Making waste management sustainable and efficient</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ScrapWrap. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="pickup.js"></script>
+</body>
+</html> 

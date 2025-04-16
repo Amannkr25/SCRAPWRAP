@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Pickup - ScrapWrap</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pickup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="ScrapWrap Logo">
+                <span>ScrapWrap</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="price-list.html">Price List</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html" id="loginLink">Login</a>
+                <a href="register.html" id="registerLink">Register</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pickup-container">
+        <div class="pickup-header">
+            <h1>Schedule Your Pickup</h1>
+            <p>Fill in the details below to schedule a waste pickup</p>
+        </div>
+
+        <div class="auth-required" style="display: none;">
+            <div class="auth-message">
+                <i class="fas fa-lock"></i>
+                <h2>Authentication Required</h2>
+                <p>Please login or register to schedule a pickup</p>
+                <div class="auth-actions">
+                    <a href="login.html" class="btn btn-primary">Login</a>
+                    <a href="register.html" class="btn btn-secondary">Register</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="pickup-form-container" id="pickupFormContainer">
+            <form id="pickupForm" class="pickup-form">
+                <div class="form-section">
+                    <h3>User Details</h3>
+                    <div class="form-group">
+                        <label for="userName">Full Name</label>
+                        <input type="text" id="userName" name="userName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email</label>
+                        <input type="email" id="userEmail" name="userEmail" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="userPhone">Phone Number</label>
+                        <input type="tel" id="userPhone" name="userPhone" readonly>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Pickup Details</h3>
+                    <div class="form-group">
+                        <label for="pickupDate">Pickup Date</label>
+                        <input type="date" id="pickupDate" name="pickupDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pickupTime">Preferred Time</label>
+                        <select id="pickupTime" name="pickupTime" required>
+                            <option value="">Select Time Slot</option>
+                            <option value="morning">Morning (9:00 AM - 12:00 PM)</option>
+                            <option value="afternoon">Afternoon (1:00 PM - 4:00 PM)</option>
+                            <option value="evening">Evening (5:00 PM - 8:00 PM)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Waste Details</h3>
+                    <div class="waste-types">
+                        <div class="waste-type">
+                            <input type="checkbox" id="plastic" name="wasteType" value="plastic">
+                            <label for="plastic">
+                                <i class="fas fa-bottle-water"></i>
+                                Plastic
+                            </label>
+                        </div>
+                        <div class="waste-type">
+                            <input type="checkbox" id="paper" name="wasteType" value="paper">
+                            <label for="paper">
+                                <i class="fas fa-file"></i>
+                                Paper
+                            </label>
+                        </div>
+                        <div class="waste-type">
+                            <input type="checkbox" id="metal" name="wasteType" value="metal">
+                            <label for="metal">
+                                <i class="fas fa-box"></i>
+                                Metal
+                            </label>
+                        </div>
+                        <div class="waste-type">
+                            <input type="checkbox" id="glass" name="wasteType" value="glass">
+                            <label for="glass">
+                                <i class="fas fa-wine-glass"></i>
+                                Glass
+                            </label>
+                        </div>
+                        <div class="waste-type">
+                            <input type="checkbox" id="organic" name="wasteType" value="organic">
+                            <label for="organic">
+                                <i class="fas fa-leaf"></i>
+                                Organic
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wasteWeight">Estimated Weight (kg)</label>
+                        <input type="number" id="wasteWeight" name="wasteWeight" min="1" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Location Details</h3>
+                    <div class="form-group">
+                        <label for="address">Full Address</label>
+                        <textarea id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="landmark">Landmark (Optional)</label>
+                        <input type="text" id="landmark" name="landmark">
+                    </div>
+                    <div class="form-group">
+                        <label for="instructions">Special Instructions</label>
+                        <textarea id="instructions" name="instructions" rows="2" placeholder="Any specific instructions for the pickup team"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Schedule Pickup</button>
+                    <a href="track-pickup.html" class="btn btn-secondary">Track Existing Pickup</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ScrapWrap</h4>
+                <p>Making waste management sustainable and efficient</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ScrapWrap. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="pickup.js"></script>
+</body>
+</html> 

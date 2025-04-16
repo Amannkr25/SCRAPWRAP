@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickup Confirmation - ScrapWrap</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="pickup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="ScrapWrap Logo">
+                <span>ScrapWrap</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="price-list.html">Price List</a>
+                <a href="contact.html">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="register.html">Register</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="confirmation-container">
+        <div class="confirmation-header">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Pickup Scheduled Successfully!</h1>
+            <p>Your waste pickup has been scheduled. Here are the details:</p>
+        </div>
+
+        <div class="confirmation-card">
+            <div class="user-info">
+                <h3>User Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">User ID</span>
+                        <span class="info-value" id="userId">SWU12345</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Name</span>
+                        <span class="info-value" id="userName">John Doe</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email</span>
+                        <span class="info-value" id="userEmail">john.doe@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Phone</span>
+                        <span class="info-value" id="userPhone">+1 234 567 8900</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pickup-details">
+                <h3>Pickup Details</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Pickup ID</span>
+                        <span class="info-value" id="pickupId">SWP67890</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Scheduled Date</span>
+                        <span class="info-value" id="pickupDate">15 March, 2024</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Time Slot</span>
+                        <span class="info-value" id="pickupTime">Morning (9:00 AM - 12:00 PM)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Waste Types</span>
+                        <span class="info-value" id="wasteTypes">Plastic, Paper, Metal</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Estimated Weight</span>
+                        <span class="info-value" id="wasteWeight">25 kg</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Address</span>
+                        <span class="info-value" id="pickupAddress">123 Green Street, Eco City</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Landmark</span>
+                        <span class="info-value" id="pickupLandmark">Near Green Park</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Special Instructions</span>
+                        <span class="info-value" id="pickupInstructions">Please collect from back gate</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="confirmation-actions">
+                <a href="track-pickup.html" class="btn btn-primary">Track Pickup</a>
+                <a href="index.html" class="btn btn-secondary">Back to Home</a>
+            </div>
+        </div>
+
+        <div class="confirmation-note">
+            <div class="note-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <p>Please keep your Pickup ID safe. You'll need it to track your pickup status.</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About ScrapWrap</h4>
+                <p>Making waste management sustainable and efficient through innovative solutions and community engagement.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="price-list.html">Price List</a>
+                <a href="schedule-pickup.html">Schedule Pickup</a>
+                <a href="track-pickup.html">Track Pickup</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="#">Waste Collection</a>
+                <a href="#">Recycling</a>
+                <a href="#">E-Waste Management</a>
+                <a href="#">Organic Waste</a>
+                <a href="#">Hazardous Waste</a>
+                <a href="#">Corporate Solutions</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p>Subscribe to our newsletter for updates and special offers.</p>
+                <div class="newsletter">
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 ScrapWrap. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="pickup.js"></script>
+</body>
+</html> 

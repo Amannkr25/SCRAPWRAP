@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ScrapWrap</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <img src="images/logo.png" alt="ScrapWrap Logo" class="admin-logo">
+                <h2>ScrapWrap Admin</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    Dashboard
+                </a>
+                <a href="#schedules" class="nav-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    Pickup Schedules
+                </a>
+                <a href="#accounts" class="nav-item">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    Accounts
+                </a>
+                <a href="#customers" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    Customers
+                </a>
+                <a href="#settings" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    Settings
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Top Bar -->
+            <header class="admin-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="admin-profile">
+                        <img src="images/admin-avatar.png" alt="Admin">
+                        <span>Admin User</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Today's Pickups</h3>
+                            <p class="stat-number">12</p>
+                            <p class="stat-change positive">+2 from yesterday</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-weight-scale"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Total Collection</h3>
+                            <p class="stat-number">2,450 kg</p>
+                            <p class="stat-change positive">+150 kg this week</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-indian-rupee-sign"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Revenue</h3>
+                            <p class="stat-number">₹25,400</p>
+                            <p class="stat-change positive">+₹3,200 this week</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Active Customers</h3>
+                            <p class="stat-number">156</p>
+                            <p class="stat-change positive">+12 this month</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pickup Schedule Section -->
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Today's Pickup Schedule</h2>
+                        <button class="add-btn">
+                            <i class="fas fa-plus"></i> Add New Pickup
+                        </button>
+                    </div>
+                    <div class="schedule-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Customer</th>
+                                    <th>Location</th>
+                                    <th>Items</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>09:00 AM</td>
+                                    <td>John Doe</td>
+                                    <td>123 Main St, City</td>
+                                    <td>Paper, Plastic</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                    <td>
+                                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>10:30 AM</td>
+                                    <td>Jane Smith</td>
+                                    <td>456 Oak Ave, City</td>
+                                    <td>Metal, Glass</td>
+                                    <td><span class="status completed">Completed</span></td>
+                                    <td>
+                                        <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Financial Summary Section -->
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Financial Summary</h2>
+                        <div class="date-filter">
+                            <select>
+                                <option>This Week</option>
+                                <option>This Month</option>
+                                <option>Last 3 Months</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="financial-grid">
+                        <div class="chart-container">
+                            <h3>Collection by Category</h3>
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3>Daily Revenue</h3>
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Recent Transactions -->
+                <section class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Recent Transactions</h2>
+                        <button class="view-all-btn">View All</button>
+                    </div>
+                    <div class="transactions-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Customer</th>
+                                    <th>Items</th>
+                                    <th>Weight</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-03-15</td>
+                                    <td>John Doe</td>
+                                    <td>Paper, Plastic</td>
+                                    <td>25 kg</td>
+                                    <td>₹750</td>
+                                    <td><span class="status completed">Paid</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2024-03-15</td>
+                                    <td>Jane Smith</td>
+                                    <td>Metal</td>
+                                    <td>15 kg</td>
+                                    <td>₹1,200</td>
+                                    <td><span class="status pending">Pending</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="admin-dashboard.js"></script>
+</body>
+</html> 
