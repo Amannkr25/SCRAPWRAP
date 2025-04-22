@@ -12,7 +12,7 @@
     <header>
         <nav>
             <div class="logo">
-                <img src="images/logo.png" alt="EcoWaste Logo">
+                <img src="images/logo.png" alt="ScrapWrap Logo">
                 <span>ScrapWrap</span>
             </div>
             <div class="nav-links">
@@ -20,8 +20,20 @@
                 <a href="about.html">About</a>
                 <a href="price-list.html" class="active">Price List</a>
                 <a href="contact.html">Contact</a>
-                <a href="login.html">Login</a>
-                <a href="register.html">Register</a>
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <div class="profile-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <span class="user-name"></span>
+                    <div class="profile-dropdown">
+                        <a href="profile.html">My Profile</a>
+                        <a href="schedule-pickup.html">Schedule Pickup</a>
+                        <a href="track-pickup.html">Track Pickup</a>
+                        <a href="#" id="logoutBtn">Logout</a>
+                    </div>
+                </div>
+                <a href="login.html" id="loginLink">Login</a>
+                <a href="register.html" id="registerLink">Register</a>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -42,19 +54,19 @@
                 <!-- Newspaper -->
                 <div class="price-card">
                     <div class="card-icon">
-                        <img src="images/newspaper.png" alt="Newspaper">
+                        <img src="images/Newsprice.jpg" alt="Newspaper">
                     </div>
                     <div class="price-info">
                         <span class="price">RS 14/KG</span>
                     </div>
                     <h3>NEWSPAPER</h3>
-                    <p class="note">**MARKET RATES DROPPED RECENTLY</p>
+                    
                 </div>
 
                 <!-- Clothes -->
                 <div class="price-card">
                     <div class="card-icon">
-                        <img src="images/clothes.png" alt="Clothes">
+                        <img src="images/clothprice.png" alt="Clothes">
                     </div>
                     <div class="price-info">
                         <span class="price">RS 2/KG</span>
@@ -66,7 +78,7 @@
                 <!-- Glass Bottles -->
                 <div class="price-card">
                     <div class="card-icon">
-                        <img src="images/glass-bottle.png" alt="Glass Bottles">
+                        <img src="images/glass.png" alt="Glass Bottles">
                     </div>
                     <div class="price-info">
                         <span class="price">RS 2/KG</span>
@@ -112,7 +124,7 @@
                 <!-- PET Bottles -->
                 <div class="price-card">
                     <div class="card-icon">
-                        <img src="images/pet-bottle.png" alt="PET Bottles">
+                        <img src="images/plasticprice.jpg" alt="PET Bottles">
                     </div>
                     <div class="price-info">
                         <span class="price">RS 8/KG</span>
@@ -156,11 +168,207 @@
             </div>
         </section>
 
+        <!-- New Flower Waste Section -->
+        <section class="flower-waste-section">
+            <div class="section-header">
+                <h1>Flower Waste</h1>
+                <p>Special rates for temple and cultural event flowers</p>
+            </div>
+
+            <div class="flower-waste-grid">
+                <!-- Marigold -->
+                <div class="flower-card">
+                    <div class="flower-icon">
+                        <img src="images/marigold.png" alt="Marigold Flowers">
+                    </div>
+                    <div class="flower-info">
+                        <h3>MARIGOLD</h3>
+                        <div class="price-info">
+                            <span class="price">RS 15/KG</span>
+                            <p class="note">Fresh temple flowers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rose -->
+                <div class="flower-card">
+                    <div class="flower-icon">
+                        <img src="images/rose.png" alt="Rose Flowers">
+                    </div>
+                    <div class="flower-info">
+                        <h3>ROSE</h3>
+                        <div class="price-info">
+                            <span class="price">RS 20/KG</span>
+                            <p class="note">Fresh temple flowers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lotus -->
+                <div class="flower-card">
+                    <div class="flower-icon">
+                        <img src="images/lotus.png" alt="Lotus Flowers">
+                    </div>
+                    <div class="flower-info">
+                        <h3>LOTUS</h3>
+                        <div class="price-info">
+                            <span class="price">RS 25/KG</span>
+                            <p class="note">Fresh temple flowers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jasmine -->
+                <div class="flower-card">
+                    <div class="flower-icon">
+                        <img src="images/jasmine.png" alt="Jasmine Flowers">
+                    </div>
+                    <div class="flower-info">
+                        <h3>JASMINE</h3>
+                        <div class="price-info">
+                            <span class="price">RS 30/KG</span>
+                            <p class="note">Fresh temple flowers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mixed Flowers -->
+                <div class="flower-card">
+                    <div class="flower-icon">
+                        <img src="images/mixed-flowers.png" alt="Mixed Flowers">
+                    </div>
+                    <div class="flower-info">
+                        <h3>MIXED FLOWERS</h3>
+                        <div class="price-info">
+                            <span class="price">RS 12/KG</span>
+                            <p class="note">Combination of different temple flowers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flower Garlands -->
+                <div class="flower-card">
+                    <div class="flower-icon">
+                        <img src="images/garland.png" alt="Flower Garlands">
+                    </div>
+                    <div class="flower-info">
+                        <h3>FLOWER GARLANDS</h3>
+                        <div class="price-info">
+                            <span class="price">RS 10/KG</span>
+                            <p class="note">Used temple garlands</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flower-waste-note">
+                <p><i class="fas fa-info-circle"></i> Note: We accept flowers from temples, cultural events, and religious ceremonies. Flowers should be free from plastic, threads, and other non-biodegradable materials.</p>
+            </div>
+        </section>
+
+        <!-- E-Waste Section -->
+        <section class="e-waste-section">
+            <div class="section-header">
+                <h1>E-Waste</h1>
+                <p>Responsible recycling of electronic waste</p>
+            </div>
+
+            <div class="e-waste-grid">
+                <!-- Mobile Phones -->
+                <div class="e-waste-card">
+                    <div class="e-waste-icon">
+                        <img src="images/mobile.png" alt="Mobile Phones">
+                    </div>
+                    <div class="e-waste-info">
+                        <h3>MOBILE PHONES</h3>
+                        <div class="price-info">
+                            <span class="price">RS 50-200/PIECE</span>
+                            <p class="note">Based on model and condition</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptops -->
+                <div class="e-waste-card">
+                    <div class="e-waste-icon">
+                        <img src="images/laptop.png" alt="Laptops">
+                    </div>
+                    <div class="e-waste-info">
+                        <h3>LAPTOPS</h3>
+                        <div class="price-info">
+                            <span class="price">RS 500-2000/PIECE</span>
+                            <p class="note">Based on model and condition</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Computers -->
+                <div class="e-waste-card">
+                    <div class="e-waste-icon">
+                        <img src="images/desktop.png" alt="Desktop Computers">
+                    </div>
+                    <div class="e-waste-info">
+                        <h3>DESKTOP COMPUTERS</h3>
+                        <div class="price-info">
+                            <span class="price">RS 800-3000/PIECE</span>
+                            <p class="note">Based on configuration</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Printers -->
+                <div class="e-waste-card">
+                    <div class="e-waste-icon">
+                        <img src="images/printer.png" alt="Printers">
+                    </div>
+                    <div class="e-waste-info">
+                        <h3>PRINTERS</h3>
+                        <div class="price-info">
+                            <span class="price">RS 200-1000/PIECE</span>
+                            <p class="note">Based on model and condition</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Televisions -->
+                <div class="e-waste-card">
+                    <div class="e-waste-icon">
+                        <img src="images/tv.png" alt="Televisions">
+                    </div>
+                    <div class="e-waste-info">
+                        <h3>TELEVISIONS</h3>
+                        <div class="price-info">
+                            <span class="price">RS 500-3000/PIECE</span>
+                            <p class="note">Based on size and type</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Electronics -->
+                <div class="e-waste-card">
+                    <div class="e-waste-icon">
+                        <img src="images/electronics.png" alt="Other Electronics">
+                    </div>
+                    <div class="e-waste-info">
+                        <h3>OTHER ELECTRONICS</h3>
+                        <div class="price-info">
+                            <span class="price">CALL FOR QUOTE</span>
+                            <p class="note">Contact for specific items</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="e-waste-note">
+                <p><i class="fas fa-info-circle"></i> Note: We ensure environmentally responsible recycling of all electronic waste. Items are dismantled and recycled according to government guidelines.</p>
+            </div>
+        </section>
+
         <section class="bulk-orders">
             <div class="bulk-content">
                 <h2>Bulk Orders?</h2>
                 <p>Get special rates for bulk quantities!</p>
-                <a href="tel:+91-8595358613" class="cta-button">Call Now: +91-8595358613</a>
+                <a href="tel:+91-8292533268" class="cta-button">Call Now: +91-8292533268</a>
             </div>
         </section>
     </main>
@@ -196,5 +404,42 @@
 
     <script src="script.js"></script>
     <script src="price-list.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userProfile = document.getElementById('userProfile');
+            const loginLink = document.getElementById('loginLink');
+            const registerLink = document.getElementById('registerLink');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const userName = document.querySelector('.user-name');
+
+            // Check if user is logged in
+            const userDetails = JSON.parse(localStorage.getItem('user_details'));
+
+            if (userDetails) {
+                // User is logged in
+                userProfile.style.display = 'flex';
+                loginLink.style.display = 'none';
+                registerLink.style.display = 'none';
+                userName.textContent = userDetails.name || 'User';
+            } else {
+                // User is not logged in
+                userProfile.style.display = 'none';
+                loginLink.style.display = 'block';
+                registerLink.style.display = 'block';
+            }
+
+            // Handle logout
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('user_details');
+                window.location.href = 'login.html';
+            });
+
+            // Update login/register links to include return URL
+            const currentUrl = window.location.href;
+            loginLink.href = `login.html?returnUrl=${encodeURIComponent(currentUrl)}`;
+            registerLink.href = `register.html?returnUrl=${encodeURIComponent(currentUrl)}`;
+        });
+    </script>
 </body>
 </html> 

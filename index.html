@@ -25,7 +25,7 @@
                     </div>
                     <span class="user-name"></span>
                     <div class="profile-dropdown">
-                        <a href="profile.html">My Profile</a>
+                        <a href="user-dashboard.html">My Profile</a>
                         <a href="schedule-pickup.html">Schedule Pickup</a>
                         <a href="track-pickup.html">Track Pickup</a>
                         <a href="#" id="logoutBtn">Logout</a>
@@ -292,28 +292,38 @@
             const closeModal = document.querySelector('.close-modal');
             const loginLink = document.getElementById('loginLink');
             const registerLink = document.getElementById('registerLink');
+            const userProfile = document.getElementById('userProfile');
+            const userName = document.querySelector('.user-name');
+            const logoutBtn = document.getElementById('logoutBtn');
 
             // Check authentication status
             const userDetails = JSON.parse(localStorage.getItem('user_details'));
 
             if (userDetails) {
                 // User is logged in
+                userProfile.style.display = 'flex';
+                loginLink.style.display = 'none';
+                registerLink.style.display = 'none';
+                userName.textContent = userDetails.name || 'User';
                 schedulePickupBtn.href = 'schedule-pickup.html';
-                loginLink.textContent = 'Logout';
-                loginLink.href = '#';
-                loginLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    localStorage.removeItem('user_details');
-                    window.location.href = 'login.html';
-                });
             } else {
                 // User not logged in
+                userProfile.style.display = 'none';
+                loginLink.style.display = 'block';
+                registerLink.style.display = 'block';
                 schedulePickupBtn.href = '#';
                 schedulePickupBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     authModal.style.display = 'block';
                 });
             }
+
+            // Handle logout
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('user_details');
+                window.location.href = 'login.html';
+            });
 
             // Close modal when clicking the close button
             closeModal.addEventListener('click', function() {
@@ -354,6 +364,11 @@
                         successMessage.remove();
                     }, 300);
                 }, 3000);
+
+                // Redirect to home page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
             }
         });
     </script>

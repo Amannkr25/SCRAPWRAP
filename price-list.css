@@ -10,7 +10,7 @@
 /* Price List Hero Section */
 .price-list-hero {
     text-align: center;
-    padding: 3rem 1rem;
+    padding: 10px 10px;
     background: #f8f9fa;
 }
 
@@ -27,7 +27,7 @@
 
 /* Price Grid Layout */
 .price-categories {
-    padding: 2rem;
+    padding: 1rem;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -41,18 +41,18 @@
 
 /* Price Card Styling */
 .price-card {
-    background: white;
-    border-radius: 15px;
-    padding: 2rem;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 0.8rem;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .price-card:hover {
@@ -61,9 +61,9 @@
 }
 
 .card-icon {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 1rem;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.5rem;
     transition: transform 0.3s ease;
 }
 
@@ -75,32 +75,37 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.price-card:hover .card-icon img {
+    transform: scale(1.2);
 }
 
 .price-info {
-    margin: 1rem 0;
+    margin: 0.3rem 0;
 }
 
 .price {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #27ae60;
     display: block;
 }
 
 .price-card h3 {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: #2c3e50;
-    margin: 0.5rem 0;
+    margin: 0.3rem 0;
     text-transform: uppercase;
     font-weight: 600;
 }
 
 .note {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: #666;
-    margin-top: 0.5rem;
-    line-height: 1.4;
+    margin-top: 0.3rem;
+    line-height: 1.2;
 }
 
 /* Hover Effects */
@@ -195,5 +200,370 @@
 
     .price-card .note {
         color: #aaa;
+    }
+}
+
+/* Flower Waste Section Styles */
+.flower-waste-section {
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+    margin: 1rem 0;
+    border-radius: 10px;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h1 {
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    color: #666;
+    font-size: 1rem;
+}
+
+.flower-waste-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.flower-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.flower-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.flower-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flower-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.flower-card:hover .flower-icon img {
+    transform: scale(1.2);
+}
+
+.flower-info h3 {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.flower-info .price-info {
+    margin-top: 0.5rem;
+}
+
+.flower-info .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2196F3;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.flower-info .note {
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.flower-waste-note {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.flower-waste-note p {
+    color: #2c3e50;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.flower-waste-note i {
+    color: #2196F3;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .flower-waste-section {
+        padding: 2rem 1rem;
+    }
+
+    .section-header h1 {
+        font-size: 2rem;
+    }
+
+    .flower-card {
+        padding: 1.5rem;
+    }
+
+    .flower-icon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .flower-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .flower-info .price {
+        font-size: 1.5rem;
+    }
+}
+
+/* E-Waste Section Styles */
+.e-waste-section {
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+    margin: 1rem 0;
+    border-radius: 10px;
+}
+
+.e-waste-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.e-waste-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.e-waste-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.e-waste-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.e-waste-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.e-waste-card:hover .e-waste-icon img {
+    transform: scale(1.2);
+}
+
+.e-waste-info h3 {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.e-waste-info .price-info {
+    margin-top: 0.5rem;
+}
+
+.e-waste-info .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2196F3;
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.e-waste-info .note {
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.e-waste-note {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.e-waste-note p {
+    color: #2c3e50;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.e-waste-note i {
+    color: #2196F3;
+    font-size: 1rem;
+}
+
+/* Responsive Design for E-Waste Section */
+@media (max-width: 768px) {
+    .e-waste-section {
+        padding: 1.5rem 0.5rem;
+    }
+
+    .e-waste-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .e-waste-card {
+        padding: 0.8rem;
+    }
+
+    .e-waste-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .e-waste-info h3 {
+        font-size: 1rem;
+    }
+
+    .e-waste-info .price {
+        font-size: 1.1rem;
+    }
+}
+
+/* User Profile Styles */
+.user-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.user-profile:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-icon i {
+    font-size: 1.8rem;
+    color: #2c3e50;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 0;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
+}
+
+.user-profile:hover .profile-dropdown {
+    display: block;
+}
+
+.profile-dropdown a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    color: #2c3e50;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.profile-dropdown a:hover {
+    background-color: #f8f9fa;
+}
+
+.profile-dropdown a:last-child {
+    color: #e74c3c;
+}
+
+/* Responsive Design for Profile */
+@media (max-width: 768px) {
+    .user-profile {
+        padding: 0.3rem;
+    }
+
+    .profile-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .profile-icon i {
+        font-size: 1.5rem;
+    }
+
+    .user-name {
+        font-size: 0.8rem;
+    }
+
+    .profile-dropdown {
+        min-width: 180px;
     }
 } 

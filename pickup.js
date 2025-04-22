@@ -41,33 +41,41 @@ document.addEventListener('DOMContentLoaded', function() {
         pickupForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            if (!userDetails) {
-                showError('Please login to schedule a pickup');
-                return;
-            }
-            
             // Get form data
             const formData = {
-                userId: userDetails.id,
-                userName: userDetails.name,
-                userEmail: userDetails.email,
-                userPhone: userDetails.phone,
-                pickupDate: this.querySelector('#pickupDate').value,
-                pickupTime: this.querySelector('#pickupTime').value,
-                wasteTypes: Array.from(this.querySelectorAll('input[name="wasteType"]:checked')).map(input => input.value),
-                wasteWeight: this.querySelector('#wasteWeight').value,
-                address: this.querySelector('#address').value,
-                landmark: this.querySelector('#landmark').value,
-                instructions: this.querySelector('#instructions').value
+                userName: document.getElementById('userName').value,
+                userEmail: document.getElementById('userEmail').value,
+                userPhone: document.getElementById('userPhone').value,
+                pickupDate: document.getElementById('pickupDate').value,
+                pickupTime: document.getElementById('pickupTime').value,
+                wasteTypes: Array.from(document.querySelectorAll('input[name="wasteType"]:checked')).map(input => input.value),
+                wasteWeight: document.getElementById('wasteWeight').value,
+                address: document.getElementById('address').value,
+                landmark: document.getElementById('landmark').value,
+                instructions: document.getElementById('instructions').value
             };
 
-            // Validate form
-            if (!validatePickupForm(formData)) {
-                return;
-            }
+            // Generate pickup ID
+            const pickupId = 'SW' + Date.now().toString().slice(-6);
+            
+            // Save pickup details to localStorage
+            const pickupDetails = {
+                ...formData,
+                pickupId: pickupId,
+                status: 'scheduled',
+                createdAt: new Date().toISOString()
+            };
 
-            // Simulate API call
-            simulatePickupScheduling(formData);
+            // Get existing pickups or initialize empty array
+            let pickups = JSON.parse(localStorage.getItem('pickups')) || [];
+            pickups.push(pickupDetails);
+            localStorage.setItem('pickups', JSON.stringify(pickups));
+
+            // Store current pickup details for confirmation page
+            localStorage.setItem('current_pickup', JSON.stringify(pickupDetails));
+
+            // Redirect to confirmation page
+            window.location.href = `pickup-confirmation.html?id=${pickupId}`;
         });
     }
 

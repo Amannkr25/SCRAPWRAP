@@ -17,9 +17,22 @@
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
+                <a href="price-list.html">Price List</a>
                 <a href="contact.html" class="active">Contact</a>
-                <a href="login.html">Login</a>
-                <a href="register.html">Register</a>
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <div class="profile-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <span class="user-name"></span>
+                    <div class="profile-dropdown">
+                        <a href="profile.html">My Profile</a>
+                        <a href="schedule-pickup.html">Schedule Pickup</a>
+                        <a href="track-pickup.html">Track Pickup</a>
+                        <a href="#" id="logoutBtn">Logout</a>
+                    </div>
+                </div>
+                <a href="login.html" id="loginLink">Login</a>
+                <a href="register.html" id="registerLink">Register</a>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -101,31 +114,70 @@
         </div>
     </main>
 
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+
+    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('contactForm');
-            const successMessage = document.querySelector('.success-message');
+            const userProfile = document.getElementById('userProfile');
+            const loginLink = document.getElementById('loginLink');
+            const registerLink = document.getElementById('registerLink');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const userName = document.querySelector('.user-name');
 
-            form.addEventListener('submit', function(e) {
+            // Check if user is logged in
+            const userDetails = JSON.parse(localStorage.getItem('user_details'));
+
+            if (userDetails) {
+                // User is logged in
+                userProfile.style.display = 'flex';
+                loginLink.style.display = 'none';
+                registerLink.style.display = 'none';
+                userName.textContent = userDetails.name || 'User';
+            } else {
+                // User is not logged in
+                userProfile.style.display = 'none';
+                loginLink.style.display = 'block';
+                registerLink.style.display = 'block';
+            }
+
+            // Handle logout
+            logoutBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                
-                // Add loading state
-                form.classList.add('loading');
-                
-                // Simulate form submission
-                setTimeout(() => {
-                    form.classList.remove('loading');
-                    successMessage.classList.add('show');
-                    
-                    // Hide success message after 3 seconds
-                    setTimeout(() => {
-                        successMessage.classList.remove('show');
-                    }, 3000);
-                    
-                    // Reset form
-                    form.reset();
-                }, 1500);
+                localStorage.removeItem('user_details');
+                window.location.href = 'login.html';
             });
+
+            // Update login/register links to include return URL
+            const currentUrl = window.location.href;
+            loginLink.href = `login.html?returnUrl=${encodeURIComponent(currentUrl)}`;
+            registerLink.href = `register.html?returnUrl=${encodeURIComponent(currentUrl)}`;
+
+            // Check if user just logged in
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('loggedIn') === 'true') {
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'success-message';
+                successMessage.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <span>Successfully logged in!</span>
+                `;
+                document.body.appendChild(successMessage);
+                setTimeout(() => {
+                    successMessage.classList.add('show');
+                }, 100);
+
+                // Remove message after 3 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 300);
+                }, 3000);
+            }
         });
     </script>
 </body>

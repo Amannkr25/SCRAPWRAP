@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - ScrapWrap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="user-dashboard.css">
+</head>
+<body class="user-body">
+    <div class="user-container">
+        <!-- Sidebar -->
+        <aside class="user-sidebar">
+            <div class="logo">
+                <img src="images/logo.png" alt="ScrapWrap Logo">
+                <h2>User Panel</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#dashboard" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+                <li><a href="#schedule"><i class="fas fa-calendar-plus"></i> <span>Schedule Pickup</span></a></li>
+                <li><a href="#pickups"><i class="fas fa-truck"></i> <span>My Pickups</span></a></li>
+                <li><a href="#transactions"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
+                <li><a href="#wallet"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
+                <li><a href="#profile" id="profileLink"><i class="fas fa-user"></i> <span>Profile</span></a></li>
+                <li><a href="#settings"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            </ul>
+            <div class="user-profile">
+                <img src="images/user-profile.jpg" alt="User Profile">
+                <div class="user-info">
+                    <h4>User Name</h4>
+                    <p>Member</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="user-main">
+            <!-- Header -->
+            <header class="user-header">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">2</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="images/user-profile.jpg" alt="User Profile">
+                        <span>User Name</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Profile Section (Hidden by default) -->
+                <div class="profile-section" style="display: none;">
+                    <div class="profile-header">
+                        <h1>My Profile</h1>
+                        <button class="action-btn primary" id="editProfileBtn">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </button>
+                    </div>
+                    
+                    <div class="profile-content">
+                        <div class="profile-info">
+                            <div class="profile-avatar">
+                                <img src="images/user-profile.jpg" alt="Profile Picture" id="profilePicture">
+                                <button class="change-avatar-btn">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                            </div>
+                            <div class="profile-details">
+                                <div class="detail-group">
+                                    <label>Full Name</label>
+                                    <p id="profileName">Loading...</p>
+                                </div>
+                                <div class="detail-group">
+                                    <label>Email</label>
+                                    <p id="profileEmail">Loading...</p>
+                                </div>
+                                <div class="detail-group">
+                                    <label>Phone</label>
+                                    <p id="profilePhone">Loading...</p>
+                                </div>
+                                <div class="detail-group">
+                                    <label>Address</label>
+                                    <p id="profileAddress">Loading...</p>
+                                </div>
+                                <div class="detail-group">
+                                    <label>Member Since</label>
+                                    <p id="profileJoinDate">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-stats">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 id="totalPickups">0</h3>
+                                    <p>Total Pickups</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 id="totalEarnings">RS 0</h3>
+                                    <p>Total Earnings</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 id="rewardPoints">0</h3>
+                                    <p>Reward Points</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <h1>Welcome back, <span class="user-name">User Name</span>!</h1>
+                    <p>Here's what's happening with your account today.</p>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon pickups">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>12</h3>
+                            <p>Total Pickups</p>
+                            <span class="stat-change positive">+2 this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon earnings">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>RS 2,500</h3>
+                            <p>Total Earnings</p>
+                            <span class="stat-change positive">+RS 500 this month</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon points">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>250</h3>
+                            <p>Reward Points</p>
+                            <span class="stat-change positive">+50 this month</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Grid -->
+                <div class="dashboard-grid">
+                    <!-- Upcoming Pickups -->
+                    <div class="upcoming-pickups">
+                        <div class="activity-header">
+                            <h2>Upcoming Pickups</h2>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="pickup-list">
+                            <div class="pickup-item">
+                                <div class="pickup-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div class="pickup-info">
+                                    <h4>Pickup #1234</h4>
+                                    <p>Tomorrow, 10:00 AM</p>
+                                    <span class="status scheduled">Scheduled</span>
+                                </div>
+                                <button class="action-btn cancel">Cancel</button>
+                            </div>
+                            <div class="pickup-item">
+                                <div class="pickup-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div class="pickup-info">
+                                    <h4>Pickup #1235</h4>
+                                    <p>March 20, 2:00 PM</p>
+                                    <span class="status scheduled">Scheduled</span>
+                                </div>
+                                <button class="action-btn cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Transactions -->
+                    <div class="recent-transactions">
+                        <div class="activity-header">
+                            <h2>Recent Transactions</h2>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="transaction-list">
+                            <div class="transaction-item">
+                                <div class="transaction-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                </div>
+                                <div class="transaction-info">
+                                    <h4>Pickup #1233</h4>
+                                    <p>March 15, 2024</p>
+                                </div>
+                                <div class="transaction-amount">
+                                    <span class="amount">RS 150.00</span>
+                                    <span class="status completed">Completed</span>
+                                </div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-icon">
+                                    <i class="fas fa-rupee-sign"></i>
+                                </div>
+                                <div class="transaction-info">
+                                    <h4>Pickup #1232</h4>
+                                    <p>March 10, 2024</p>
+                                </div>
+                                <div class="transaction-amount">
+                                    <span class="amount">RS 200.00</span>
+                                    <span class="status completed">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="action-buttons">
+                        <button class="action-btn primary">
+                            <i class="fas fa-calendar-plus"></i>
+                            Schedule New Pickup
+                        </button>
+                        <button class="action-btn secondary">
+                            <i class="fas fa-wallet"></i>
+                            Add Money to Wallet
+                        </button>
+                        <button class="action-btn secondary">
+                            <i class="fas fa-gift"></i>
+                            Redeem Points
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            const userDetails = JSON.parse(localStorage.getItem('user_details'));
+            if (!userDetails) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Update user name throughout the dashboard
+            document.querySelectorAll('.user-name').forEach(element => {
+                element.textContent = userDetails.name;
+            });
+            document.querySelector('.user-profile span').textContent = userDetails.name;
+            document.querySelector('.user-sidebar .user-info h4').textContent = userDetails.name;
+
+            // Profile Section
+            const profileLink = document.getElementById('profileLink');
+            const profileSection = document.querySelector('.profile-section');
+            const dashboardSection = document.querySelector('.dashboard-section');
+            const editProfileBtn = document.getElementById('editProfileBtn');
+
+            profileLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Hide dashboard and show profile
+                dashboardSection.style.display = 'none';
+                profileSection.style.display = 'block';
+                
+                // Update active link
+                document.querySelector('.nav-links a.active').classList.remove('active');
+                this.classList.add('active');
+
+                // Load profile data
+                loadProfileData();
+            });
+
+            function loadProfileData() {
+                // Update profile information
+                document.getElementById('profileName').textContent = userDetails.name || 'Not set';
+                document.getElementById('profileEmail').textContent = userDetails.email || 'Not set';
+                document.getElementById('profilePhone').textContent = userDetails.phone || 'Not set';
+                document.getElementById('profileAddress').textContent = userDetails.address || 'Not set';
+                document.getElementById('profileJoinDate').textContent = userDetails.joinDate || 'Not set';
+                
+                // Update profile stats
+                document.getElementById('totalPickups').textContent = userDetails.totalPickups || '0';
+                document.getElementById('totalEarnings').textContent = `RS ${userDetails.totalEarnings || '0'}`;
+                document.getElementById('rewardPoints').textContent = userDetails.rewardPoints || '0';
+            }
+
+            editProfileBtn.addEventListener('click', function() {
+                // Implement profile editing functionality
+                const profileDetails = document.querySelectorAll('.profile-details .detail-group p');
+                profileDetails.forEach(detail => {
+                    const currentValue = detail.textContent;
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = currentValue;
+                    input.className = 'profile-input';
+                    detail.parentNode.replaceChild(input, detail);
+                });
+
+                // Change button to save
+                this.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+                this.classList.remove('primary');
+                this.classList.add('success');
+                
+                this.onclick = function() {
+                    // Save changes to localStorage
+                    const inputs = document.querySelectorAll('.profile-input');
+                    const updatedDetails = {
+                        ...userDetails,
+                        name: inputs[0].value,
+                        email: inputs[1].value,
+                        phone: inputs[2].value,
+                        address: inputs[3].value
+                    };
+                    
+                    localStorage.setItem('user_details', JSON.stringify(updatedDetails));
+                    
+                    // Reload profile data
+                    loadProfileData();
+                    
+                    // Reset button
+                    this.innerHTML = '<i class="fas fa-edit"></i> Edit Profile';
+                    this.classList.remove('success');
+                    this.classList.add('primary');
+                };
+            });
+
+            // Add click handlers for navigation links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if (link.id !== 'profileLink') {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        document.querySelector('.nav-links a.active').classList.remove('active');
+                        this.classList.add('active');
+                        
+                        // Show dashboard and hide profile
+                        dashboardSection.style.display = 'block';
+                        profileSection.style.display = 'none';
+                    });
+                }
+            });
+
+            // Add click handlers for action buttons
+            document.querySelectorAll('.action-btn.cancel').forEach(button => {
+                button.addEventListener('click', function() {
+                    const pickupItem = this.closest('.pickup-item');
+                    if (confirm('Are you sure you want to cancel this pickup?')) {
+                        pickupItem.remove();
+                    }
+                });
+            });
+
+            // Add click handlers for quick action buttons
+            document.querySelectorAll('.quick-actions .action-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const action = this.querySelector('i').className;
+                    if (action.includes('calendar-plus')) {
+                        window.location.href = 'schedule-pickup.html';
+                    } else if (action.includes('wallet')) {
+                        // Implement wallet functionality
+                        console.log('Add money to wallet');
+                    } else if (action.includes('gift')) {
+                        // Implement points redemption
+                        console.log('Redeem points');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

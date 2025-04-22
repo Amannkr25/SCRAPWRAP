@@ -5,68 +5,221 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - ScrapWrap</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="auth.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .login-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            background: #f5f5f5;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .toggle-option {
+            padding: 0.8rem 2rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .toggle-option.active {
+            background: var(--gradient-green);
+            color: white;
+        }
+
+        .login-form {
+            display: none;
+        }
+
+        .login-form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-green);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient-green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.2);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .form-footer a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="auth-header">
-                <img src="images/logo.png" alt="ScrapWrap Logo" class="auth-logo">
-                <h2>Welcome Back</h2>
-                <p>Login to your ScrapWrap account</p>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="ScrapWrap Logo">
+                <span>ScrapWrap</span>
             </div>
-            
-            <form class="auth-form" id="loginForm">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="price-list.html">Price List</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <div class="login-toggle">
+                <div class="toggle-option active" data-form="user">User Login</div>
+                <div class="toggle-option" data-form="admin">Admin Login</div>
+            </div>
+
+            <!-- User Login Form -->
+            <form id="userLoginForm" class="login-form active">
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <div class="input-group">
-                        <i class="fas fa-envelope"></i>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                    </div>
+                    <label for="userEmail">Email</label>
+                    <input type="email" id="userEmail" required>
                 </div>
-                
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="input-group">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                        <i class="fas fa-eye toggle-password"></i>
-                    </div>
+                    <label for="userPassword">Password</label>
+                    <input type="password" id="userPassword" required>
                 </div>
-                
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" name="remember">
-                        <span>Remember me</span>
-                    </label>
-                    <a href="#" class="forgot-password">Forgot Password?</a>
-                </div>
-                
-                <button type="submit" class="auth-btn">Login</button>
-                
-                <div class="auth-divider">
-                    <span>or continue with</span>
-                </div>
-                
-                <div class="social-login">
-                    <button type="button" class="social-btn google">
-                        <i class="fab fa-google"></i>
-                        Google
-                    </button>
-                    <button type="button" class="social-btn facebook">
-                        <i class="fab fa-facebook-f"></i>
-                        Facebook
-                    </button>
+                <button type="submit" class="submit-btn">Login as User</button>
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="register.html">Register here</a></p>
                 </div>
             </form>
-            
-            <div class="auth-footer">
-                <p>Don't have an account? <a href="register.html">Register</a></p>
-            </div>
-        </div>
-    </div>
 
-    <script src="auth.js"></script>
+            <!-- Admin Login Form -->
+            <form id="adminLoginForm" class="login-form">
+                <div class="form-group">
+                    <label for="adminEmail">Admin Email</label>
+                    <input type="email" id="adminEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword">Admin Password</label>
+                    <input type="password" id="adminPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Login as Admin</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleOptions = document.querySelectorAll('.toggle-option');
+            const loginForms = document.querySelectorAll('.login-form');
+
+            toggleOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options and forms
+                    toggleOptions.forEach(opt => opt.classList.remove('active'));
+                    loginForms.forEach(form => form.classList.remove('active'));
+
+                    // Add active class to clicked option and corresponding form
+                    this.classList.add('active');
+                    const formId = this.dataset.form + 'LoginForm';
+                    document.getElementById(formId).classList.add('active');
+                });
+            });
+
+            // Handle user login form submission
+            document.getElementById('userLoginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('userEmail').value;
+                const password = document.getElementById('userPassword').value;
+
+                // Here you would typically make an API call to verify credentials
+                // For demo purposes, we'll just store the user details
+                const userDetails = {
+                    name: email.split('@')[0],
+                    email: email,
+                    role: 'user'
+                };
+
+                localStorage.setItem('user_details', JSON.stringify(userDetails));
+
+                // Redirect to the return URL or home page
+                const urlParams = new URLSearchParams(window.location.search);
+                const returnUrl = urlParams.get('returnUrl') || 'index.html';
+                window.location.href = returnUrl + '?loggedIn=true';
+            });
+
+            // Handle admin login form submission
+            document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('adminEmail').value;
+                const password = document.getElementById('adminPassword').value;
+
+                // Here you would typically make an API call to verify admin credentials
+                // For demo purposes, we'll just store the admin details
+                const adminDetails = {
+                    name: email.split('@')[0],
+                    email: email,
+                    role: 'admin'
+                };
+
+                localStorage.setItem('user_details', JSON.stringify(adminDetails));
+
+                // Redirect to admin dashboard
+                window.location.href = 'admin-dashboard.html';
+            });
+        });
+    </script>
 </body>
 </html> 
