@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrapWrap Sustainable Waste Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="EcoWaste Logo">
+                <span>ScrapWrap</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="price-list.html">Price List</a>
+                <a href="contact.html">Contact</a>
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <div class="profile-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <span class="user-name"></span>
+                    <div class="profile-dropdown">
+                        <a href="user-dashboard.html">My Profile</a>
+                        <a href="schedule-pickup.html">Schedule Pickup</a>
+                        <a href="track-pickup.html">Track Pickup</a>
+                        <a href="#" id="logoutBtn">Logout</a>
+                    </div>
+                </div>
+                <a href="login.html" id="loginLink">Login</a>
+                <a href="register.html" id="registerLink">Register</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section with 3D Animation -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="animate-text">Transform Waste into Resources</h1>
+                    <p class="animate-text">Join our mission to create a sustainable future through smart waste management and recycling solutions.</p>
+                    <div class="hero-buttons">
+                        <a href="#" id="schedulePickupBtn" class="btn btn-primary animate-text">Schedule Pickup</a>
+                        <a href="#about" class="btn btn-secondary animate-text">Learn More</a>
+                    </div>
+                </div>
+                <div class="recycling-cycle">
+                    
+                        
+                        <div class="cycle-items">
+                            <div class="cycle-item plastic">
+                                <div class="item-content">
+                                    <img src="images/plastic.png" alt="Plastic">
+                                
+                                </div>
+                            </div>
+                            <div class="cycle-item paper">
+                                <div class="item-content">
+                                    <img src="images/temple.png" alt="temple">
+                                    
+                                </div>
+                            </div>
+                            <div class="cycle-item organic">
+                                    
+                                <div class="item-content" style="height: 200px; width: 200px ; border-radius: 120px;">
+                                    <img src="images/organic.png" alt="Organic">
+                                
+                                </div>
+                            </div>
+                            <div class="cycle-item glass">
+                                <div class="item-content">
+                                    <img src="images/glass.png" alt="Glass">
+                            
+                                </div>
+                            </div>
+                            <div class="cycle-item metal">
+                                <div class="item-content">
+                                    <img src="images/flower.png" alt="flower">
+                                    
+                                </div>
+                            </div>
+                            <div class="cycle-item flower">
+                                <div class="item-content">
+                                    <img src="images/factory.png" alt="factory">
+                                    
+                                </div>
+                            </div>
+                            <div class="cycle-item fruit">
+                                <div class="item-content">
+                                    <img src="images/paper.png" alt="Paper">
+                                    
+                                </div>
+                            </div>
+                            <div class="cycle-item vegetable">
+                                <div class="item-content">
+                                    <img src="images/metal.png" alt="Metal">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+            <div class="hero-overlay"></div>
+        </section>
+
+        <!-- Auth Modal -->
+        <div id="authModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="auth-message">
+                    <i class="fas fa-lock"></i>
+                    <h2>Authentication Required</h2>
+                    <p>Please login or register to schedule a pickup</p>
+                    <div class="auth-actions">
+                        <a href="login.html" class="btn btn-primary">Login</a>
+                        <a href="register.html" class="btn btn-secondary">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recycling Quotes Section -->
+        <section class="quotes-section">
+            <div class="quote-card">
+                <div class="quote-icon">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <blockquote>
+                    "The greatest threat to our planet is the belief that someone else will save it."
+                </blockquote>
+                <cite>- Robert Swan</cite>
+            </div>
+            <div class="quote-card">
+                <div class="quote-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <blockquote>
+                    "Recycling is not just about waste management, it's about resource conservation."
+                </blockquote>
+                <cite>- Environmental Wisdom</cite>
+            </div>
+            <div class="quote-card">
+                <div class="quote-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <blockquote>
+                    "Every piece of plastic ever made still exists somewhere on Earth."
+                </blockquote>
+                <cite>- National Geographic</cite>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section" id="learn-more">
+            <h2>Why Choose ScrapWrap?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Earn Money</h3>
+                    <p>Turn your waste into cash with our competitive pricing system</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Easy Pickup</h3>
+                    <p>Schedule convenient pickups at your location</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Track Impact</h3>
+                    <p>Monitor your environmental impact in real-time</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <p>Join a community of eco-conscious individuals</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <h2 class="stats-heading">Our Environmental Impact</h2>
+            <p class="stats-subheading">Making a measurable difference in waste management</p>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="1000">0</div>
+                    <div class="stat-label">Metric Tons of Waste Recycled</div>
+                    <p class="stat-description">Successfully processed and diverted from landfills</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="5000">0</div>
+                    <div class="stat-label">Active Community Members</div>
+                    <p class="stat-description">Eco-conscious individuals contributing to change</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="100">0</div>
+                    <div class="stat-label">Cities & Towns Served</div>
+                    <p class="stat-description">Growing network of sustainable communities</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="95">0</div>
+                    <div class="stat-label">Customer Satisfaction Rate</div>
+                    <p class="stat-description">Percentage of happy and returning customers</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Make a Difference?</h2>
+                <p>Join thousands of eco-conscious individuals who are transforming waste management</p>
+                <a href="register.html" class="cta-button primary">Start Your Journey</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About ScrapWrap</h4>
+                <p>Making waste management sustainable and efficient through innovative solutions and community engagement.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="price-list.html">Price List</a>
+                <a href="schedule-pickup.html">Schedule Pickup</a>
+                <a href="track-pickup.html">Track Pickup</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a href="#">Waste Collection</a>
+                <a href="#">Recycling</a>
+                <a href="#">E-Waste Management</a>
+                <a href="#">Organic Waste</a>
+                <a href="#">Hazardous Waste</a>
+                <a href="#">Corporate Solutions</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p>Subscribe to our newsletter for updates and special offers.</p>
+                <div class="newsletter">
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 ScrapWrap. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const schedulePickupBtn = document.getElementById('schedulePickupBtn');
+            const authModal = document.getElementById('authModal');
+            const closeModal = document.querySelector('.close-modal');
+            const loginLink = document.getElementById('loginLink');
+            const registerLink = document.getElementById('registerLink');
+            const userProfile = document.getElementById('userProfile');
+            const userName = document.querySelector('.user-name');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            // Check authentication status
+            const userDetails = JSON.parse(localStorage.getItem('user_details'));
+
+            if (userDetails) {
+                // User is logged in
+                userProfile.style.display = 'flex';
+                loginLink.style.display = 'none';
+                registerLink.style.display = 'none';
+                userName.textContent = userDetails.name || 'User';
+                schedulePickupBtn.href = 'schedule-pickup.html';
+            } else {
+                // User not logged in
+                userProfile.style.display = 'none';
+                loginLink.style.display = 'block';
+                registerLink.style.display = 'block';
+                schedulePickupBtn.href = '#';
+                schedulePickupBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    authModal.style.display = 'block';
+                });
+            }
+
+            // Handle logout
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('user_details');
+                window.location.href = 'login.html';
+            });
+
+            // Close modal when clicking the close button
+            closeModal.addEventListener('click', function() {
+                authModal.style.display = 'none';
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === authModal) {
+                    authModal.style.display = 'none';
+                }
+            });
+
+            // Update login/register links to include return URL
+            const currentUrl = window.location.href;
+            loginLink.href = `login.html?returnUrl=${encodeURIComponent(currentUrl)}`;
+            registerLink.href = `register.html?returnUrl=${encodeURIComponent(currentUrl)}`;
+
+            // Check if user just logged in
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('loggedIn') === 'true') {
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'success-message';
+                successMessage.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <span>Successfully logged in! You can now schedule a pickup.</span>
+                `;
+                document.body.appendChild(successMessage);
+                setTimeout(() => {
+                    successMessage.classList.add('show');
+                }, 100);
+
+                // Remove message after 3 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 300);
+                }, 3000);
+
+                // Redirect to home page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        });
+    </script>
+</body>
+</html> 
