@@ -7,7 +7,7 @@ const app=express();
 
 //const mongoURI = "mongodb://localhost:27017/yourDatabaseName"; 
 
-//mongoose.connect("mongodb://localhost:27017/scrapWrap").then(()=>{console.log("moogose is connect")}).catch((err)=>{"not connected",err})
+mongoose.connect("mongodb://localhost:27017/scrapWrap").then(()=>{console.log("moogose is connect")}).catch((err)=>{"not connected",err})
 
 app.get('/',(req,res)=>{
 

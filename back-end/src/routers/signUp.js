@@ -6,7 +6,7 @@ const {Users}=require("../models/user")
 route.post('/',async(req,res)=>{
 
     const {name,email,phone,password}=req.body;
-    
+    console.log(name,email,phone,password);
     try
     {
         const user=new Users({name,email,phone,password});
