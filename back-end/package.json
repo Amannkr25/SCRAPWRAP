@@ -10,11 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
-<<<<<<< Updated upstream
-=======
     "cookie-parser": "^1.4.7",
     "cookies-parser": "^1.2.0",
->>>>>>> Stashed changes
     "express": "^5.1.0",
     "mongoose": "^8.14.0",
     "uuid": "^11.1.0"
