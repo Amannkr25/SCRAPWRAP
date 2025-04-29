@@ -1,10 +1,10 @@
 const express =require("express");
 const {Users} = require("../models/user")
-const loginRoute=express.Router();
 const bcrypt=require("bcrypt");
 const {setSession,getSession}=require("../auth/sessionId")
-import { v4 as uuidv4 } from 'uuid';
-
+// import { v4 as uuidv4 } from 'uuid';
+const shortid=require("shortid")
+const loginRoute=express.Router();
 
 
 
@@ -25,7 +25,7 @@ loginRoute.post('/',async(req,res)=>{
     {
         res.status(404).json({status:false,messege:"wrong password"});
     }
-    const sessionToken = uuidv4();
+    const sessionToken = shortid.generate();
     setSession(sessionToken,user);
     
     res.cookie('session_token', sessionToken, {
@@ -35,13 +35,6 @@ loginRoute.post('/',async(req,res)=>{
       });
     res.status(200).json({status:true,messege:"login successful",user:user})
 
-    
-
-
-
-
-
-   
 })
 
 module.exports={
