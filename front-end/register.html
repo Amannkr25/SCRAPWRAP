@@ -4,179 +4,224 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - ScrapWrap</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="auth-container">
-        <div class="auth-box">
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="ScrapWrap Logo">
+                <span>ScrapWrap</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="price-list.html">Price List</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-card">
             <div class="auth-header">
                 <img src="images/logo.png" alt="ScrapWrap Logo" class="auth-logo">
-                <h2>Create Account</h2>
-                <p>Join ScrapWrap to start recycling and earning rewards</p>
+                <h2>Create Your Account</h2>
+                <p>Join our community of eco-conscious individuals</p>
             </div>
 
-            <form id="registerForm" class="auth-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" required>
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="mobile">Mobile Number</label>
-                    <div class="input-with-icon">
-                        <span class="country-code">+91</span>
-                        <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" required>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="address">Address</label>
-                    <textarea id="address" name="address" rows="3" required></textarea>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="city">City</label>
-                        <input type="text" id="city" name="city" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="pincode">Pincode</label>
-                        <input type="text" id="pincode" name="pincode" pattern="[0-9]{6}" required>
+                    <label for="phone">Phone Number</label>
+                    <div class="input-group">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <div class="password-input">
-                        <input type="password" id="password" name="password" required>
-                        <i class="fas fa-eye-slash toggle-password"></i>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" placeholder="Create a password" required>
+                        <i class="fas fa-eye toggle-password"></i>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
-                    <div class="password-input">
-                        <input type="password" id="confirmPassword" name="confirmPassword" required>
-                        <i class="fas fa-eye-slash toggle-password"></i>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                        <i class="fas fa-eye toggle-password"></i>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="terms" required>
+                <div class="form-options">
+                    <label class="terms">
+                        <input type="checkbox" required>
                         I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a>
                     </label>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-            </form>
+                <button type="submit" class="auth-btn">Create Account</button>
 
-            <div class="social-login">
-                <p class="divider">Or register with</p>
-                <div class="social-buttons">
-                    <button class="social-btn google">
+                <div class="auth-divider">
+                    <span>or register with</span>
+                </div>
+
+                <div class="social-login">
+                    <button type="button" class="social-btn google">
                         <i class="fab fa-google"></i>
-                        <span>Google</span>
+                        Google
                     </button>
-                    <button class="social-btn facebook">
+                    <button type="button" class="social-btn facebook">
                         <i class="fab fa-facebook-f"></i>
-                        <span>Facebook</span>
-                    </button>
-                    <button class="social-btn twitter">
-                        <i class="fab fa-twitter"></i>
-                        <span>Twitter</span>
-                    </button>
-                    <button class="social-btn instagram">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
+                        Facebook
                     </button>
                 </div>
-            </div>
 
-            <div class="auth-footer">
-                <p>Already have an account? <a href="login.html" class="link">Login here</a></p>
-            </div>
+                <div class="auth-footer">
+                    Already have an account? <a href="login.html" class="link">Login here</a>
+                </div>
+            </form>
         </div>
-    </div>
+    </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('registerForm');
-            const passwordInputs = document.querySelectorAll('.password-input input');
-            const toggleButtons = document.querySelectorAll('.toggle-password');
+            const registerForm = document.getElementById('registerForm');
+            const togglePasswordIcons = document.querySelectorAll('.toggle-password');
 
             // Toggle password visibility
-            toggleButtons.forEach((button, index) => {
-                button.addEventListener('click', function() {
-                    const type = passwordInputs[index].type === 'password' ? 'text' : 'password';
-                    passwordInputs[index].type = type;
+            togglePasswordIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                    input.setAttribute('type', type);
                     this.classList.toggle('fa-eye');
                     this.classList.toggle('fa-eye-slash');
                 });
             });
 
-            // Form submission
-            form.addEventListener('submit', function(e) {
+            // Handle form submission
+            registerForm.addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                // Get form values
-                const firstName = document.getElementById('firstName').value;
-                const lastName = document.getElementById('lastName').value;
-                const email = document.getElementById('email').value;
-                const mobile = document.getElementById('mobile').value;
-                const address = document.getElementById('address').value;
-                const city = document.getElementById('city').value;
-                const pincode = document.getElementById('pincode').value;
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    password: document.getElementById('password').value,
+                    confirmPassword: document.getElementById('confirmPassword').value
+                };
 
-                // Validate passwords match
-                if (password !== confirmPassword) {
-                    alert('Passwords do not match!');
+                // Validate form
+                if (!formData.name || !formData.email || !formData.phone || !formData.password || !formData.confirmPassword) {
+                    showError('Please fill in all fields');
                     return;
                 }
 
-                // Create user object
-                const userDetails = {
-                    name: `${firstName} ${lastName}`,
-                    email: email,
-                    phone: mobile,
-                    address: address,
-                    city: city,
-                    pincode: pincode,
-                    joinDate: new Date().toLocaleDateString(),
-                    totalPickups: 0,
-                    totalEarnings: 0,
-                    rewardPoints: 0
-                };
+                if (formData.password !== formData.confirmPassword) {
+                    showError('Passwords do not match');
+                    return;
+                }
 
-                // Store user details in localStorage
-                localStorage.setItem('user_details', JSON.stringify(userDetails));
+                // Get existing users or initialize empty array
+                const registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+
+                // Check if email already exists
+                if (registeredUsers.some(user => user.email === formData.email)) {
+                    showError('Email already registered. Please login instead.');
+                    return;
+                }
+
+                // Add new user
+                registeredUsers.push({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    password: formData.password
+                });
+
+                // Save to localStorage
+                localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
 
                 // Show success message
-                alert('Registration successful! Redirecting to dashboard...');
+                showSuccess('Registration successful! Redirecting to login...');
 
-                // Redirect to dashboard
-                window.location.href = 'user-dashboard.html';
+                // Redirect to login page
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
             });
 
+            // Helper functions
+            function showError(message) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = message;
+
+                const form = document.querySelector('.auth-form');
+                const existingError = form.querySelector('.error-message');
+
+                if (existingError) {
+                    existingError.remove();
+                }
+
+                form.insertBefore(errorDiv, form.firstChild);
+
+                setTimeout(() => {
+                    errorDiv.remove();
+                }, 3000);
+            }
+
+            function showSuccess(message) {
+                const successDiv = document.createElement('div');
+                successDiv.className = 'success-message';
+                successDiv.textContent = message;
+
+                const form = document.querySelector('.auth-form');
+                const existingSuccess = form.querySelector('.success-message');
+
+                if (existingSuccess) {
+                    existingSuccess.remove();
+                }
+
+                form.insertBefore(successDiv, form.firstChild);
+
+                setTimeout(() => {
+                    successDiv.remove();
+                }, 3000);
+            }
+
             // Social login buttons
-            document.querySelectorAll('.social-btn').forEach(button => {
+            const socialButtons = document.querySelectorAll('.social-btn');
+
+            socialButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const platform = this.classList[1];
-                    alert(`Login with ${platform} will be implemented soon!`);
+                    const platform = this.classList.contains('google') ? 'Google' : 'Facebook';
+                    showMessage(`Redirecting to ${platform} login...`);
+                    // Add actual social login implementation here
                 });
             });
         });

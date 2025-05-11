@@ -12,6 +12,8 @@
     background: #f8f9fa;
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 .user-container {
@@ -24,7 +26,7 @@
     width: var(--sidebar-width);
     background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%);
     color: white;
-    padding: 2rem 1.5rem;
+  
     position: fixed;
     height: 100vh;
     overflow-y: auto;
@@ -50,7 +52,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 2.5rem;
+    margin: 2.5rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
