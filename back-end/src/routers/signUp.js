@@ -7,6 +7,17 @@ route.post('/',async(req,res)=>{
 
     const {name,email,phone,password}=req.body;
     console.log(name,email,phone,password);
+
+    try{
+
+        const bool=await Users.findOne({ $or: [{ email: email }, { phone: phone }] })
+        if(bool)
+            res.status(409).json({status:false,messege:"user already exited"})
+    }catch(err)
+    {
+        res.status(500).json({status:false,messege :"error in finding user"});
+    }
+
     try
     {
         const user=new Users({name,email,phone,password});

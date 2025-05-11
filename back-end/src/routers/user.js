@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Users } = require('../models/user');
-const authMiddleware = require('../middleware/auth');
+const {authMiddleware} = require('../middleware/auth');
 const bcrypt = require('bcrypt');
 
 // Get user profile

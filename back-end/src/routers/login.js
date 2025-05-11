@@ -4,6 +4,8 @@ const bcrypt=require("bcrypt");
 const {setSession,getSession}=require("../auth/sessionId")
 // import { v4 as uuidv4 } from 'uuid';
 const shortid=require("shortid")
+
+
 const loginRoute=express.Router();
 
 
@@ -36,6 +38,12 @@ loginRoute.post('/',async(req,res)=>{
     res.status(200).json({status:true,messege:"login successful",user:user})
 
 })
+loginRoute.post('/logout', (req, res) => {
+    const token = req.cookies.session_token;
+    destroySession(token); // Your function to remove it
+    res.clearCookie('session_token');
+    res.status(200).json({ status: true, message: "Logged out" });
+});
 
 module.exports={
     loginRoute
