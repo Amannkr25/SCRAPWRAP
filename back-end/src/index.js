@@ -4,8 +4,17 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 
+<<<<<<< HEAD
 // Load environment variables
 dotenv.config();
+=======
+const express=require('express')
+const {route}=require('../src/routers/signUp')
+const {loginRoute}=require('../src/routers/login')
+const modelUsers=require("../src/models/user");
+const mongoose=require('mongoose')
+const app=express();
+>>>>>>> 5460c903f5cc187eb27e3c73b6a2abfa8177004b
 
 // Import routes
 const authRoutes = require('./routers/auth');
@@ -28,6 +37,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/scrapWrap
     .then(() => console.log("MongoDB connected successfully"))
     .catch(err => console.error("MongoDB connection error:", err));
 
+<<<<<<< HEAD
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -48,3 +58,9 @@ const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+=======
+app.use(express.json())
+app.use('/signup',route);
+app.use('/login',loginRoute)
+app.listen(8000,()=>{console.log("okk server start")});
+>>>>>>> 5460c903f5cc187eb27e3c73b6a2abfa8177004b
