@@ -9,7 +9,11 @@ function getSession(token)
 {
     return sessionId.get(token);
 }
+function destroySession(token)
+{
+    return sessionId.delete(token)
+}
 
 module.exports={
-    setSession,getSession
+    setSession,getSession,destroySession
 }

@@ -1,7 +1,7 @@
 const express =require("express");
 const {Users} = require("../models/user")
 const bcrypt=require("bcrypt");
-const {setSession,getSession}=require("../auth/sessionId")
+const {setSession,getSession,destroySession}=require("../auth/sessionId")
 // import { v4 as uuidv4 } from 'uuid';
 const shortid=require("shortid")
 
@@ -18,14 +18,14 @@ loginRoute.post('/',async(req,res)=>{
 
     if(!user)
     {
-        res.status(404).json({status:false,messege:"user not found"});
+        return res.status(404).json({status:false,messege:"user not found"});
     }
 
     const isPasswordCorrect =await bcrypt.compare(password,user.password);
 
     if(!isPasswordCorrect)
     {
-        res.status(404).json({status:false,messege:"wrong password"});
+        return res.status(404).json({status:false,messege:"wrong password"});
     }
     const sessionToken = shortid.generate();
     setSession(sessionToken,user);
@@ -35,7 +35,7 @@ loginRoute.post('/',async(req,res)=>{
         secure: process.env.NODE_ENV === 'production',
         maxAge:  60 * 60 * 1000,
       });
-    res.status(200).json({status:true,messege:"login successful",user:user})
+     return res.status(200).json({status:true,messege:"login successful",user:user})
 
 })
 loginRoute.post('/logout', (req, res) => {
