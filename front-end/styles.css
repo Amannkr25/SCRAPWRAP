@@ -1949,9 +1949,9 @@ body {
     margin-top: 0.5rem;
 }
 
-.user-profile:hover .profile-dropdown {
+/* .user-profile:hover .profile-dropdown {
     display: block;
-}
+} */
 
 .profile-dropdown a {
     display: block;

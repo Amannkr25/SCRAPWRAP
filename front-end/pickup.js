@@ -23,10 +23,26 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update navigation links
         loginLink.textContent = 'Logout';
         loginLink.href = '#';
-        loginLink.addEventListener('click', function(e) {
+        loginLink.addEventListener('click',async function(e) {
             e.preventDefault();
-            localStorage.removeItem('user_details');
-            window.location.href = 'login.html';
+             const res=await fetch('http://localhost:8000/login/logout',{ method: 'POST',
+                    credentials: 'include', // ⬅️ important: allows cookies to be sent and received
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                const lastRes= await res.json();
+
+                if(lastRes)
+                {
+                    localStorage.removeItem('user_details');
+                    window.location.href = 'login.html';
+
+                }
+                else
+                {
+                    console.error("Logout failed:", lastRes.message);
+                }
         });
 
         // Pre-fill user details

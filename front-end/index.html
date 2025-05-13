@@ -296,6 +296,15 @@
             const userName = document.querySelector('.user-name');
             const logoutBtn = document.getElementById('logoutBtn');
 
+             document.getElementById("userProfile").addEventListener('mouseenter', function() {
+                // Check if user is logged in
+               document.querySelector(".profile-dropdown").style.display = "block";
+            });
+             document.getElementById("userProfile").addEventListener('mouseleave',   function() {
+                // Check if user is logged in
+               document.querySelector(".profile-dropdown").style.display = "none";
+            });
+
             // Check authentication status
             const userDetails = JSON.parse(localStorage.getItem('user_details'));
 
@@ -319,10 +328,27 @@
             }
 
             // Handle logout
-            logoutBtn.addEventListener('click', function(e) {
+            logoutBtn.addEventListener('click',async function(e) {
                 e.preventDefault();
-                localStorage.removeItem('user_details');
-                window.location.href = 'login.html';
+                
+                const res=await fetch('http://localhost:8000/login/logout',{ method: 'POST',
+                    credentials: 'include', // ⬅️ important: allows cookies to be sent and received
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                const lastRes= await res.json();
+
+                if(lastRes)
+                {
+                    localStorage.removeItem('user_details');
+                    window.location.href = 'login.html';
+
+                }
+                else
+                {
+                    console.error("Logout failed:", lastRes.message);
+                }
             });
 
             // Close modal when clicking the close button

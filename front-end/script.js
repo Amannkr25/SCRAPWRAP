@@ -52,13 +52,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Add fade-in animation to elements when they come into view
-const observerOptions = {
+var observerOptions = {
     root: null,
     rootMargin: '0px',
     threshold: 0.1
 };
 
-const observer = new IntersectionObserver((entries) => {
+var observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('fade-in');
@@ -177,7 +177,7 @@ window.addEventListener('scroll', () => {
 });
 
 // Scroll Animation with 3D Effect
-const observerOptions = {
+var observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
 };
