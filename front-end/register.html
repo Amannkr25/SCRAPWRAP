@@ -78,7 +78,8 @@
                 <div class="form-options">
                     <label class="terms">
                         <input type="checkbox" required>
-                        I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a>
+                        I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#"
+                            class="link">Privacy Policy</a>
                     </label>
                 </div>
 
@@ -123,7 +124,7 @@
             });
 
             // Handle form submission
-            registerForm.addEventListener('submit', function(e) {
+            registerForm.addEventListener('submit',async function (e) {
                 e.preventDefault();
 
                 // Get form data
@@ -164,15 +165,41 @@
                 });
 
                 // Save to localStorage
-                localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
+                // localStorage.setItem('registeredUsers', JSON.stringify(registeredUsers));
 
-                // Show success message
-                showSuccess('Registration successful! Redirecting to login...');
-
-                // Redirect to login page
+                // Example using fetch
+                const res= await fetch('http://localhost:8000/signUp', {
+                    method: 'POST',
+                    credentials: 'include', // ⬅️ important: allows cookies to be sent and received
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone,
+                    password: formData.password
+                })
+                });
+                response = await res.json();
+                console.log(response);
+               if(response.status){
+                // Save to localStorage
                 setTimeout(() => {
+                    showSuccess('Registration successful! Redirecting to login...');
                     window.location.href = 'login.html';
                 }, 1500);
+               }
+                
+
+                    
+
+
+                // Show success message
+                
+
+                // Redirect to login page
+                
             });
 
             // Helper functions
@@ -218,7 +245,7 @@
             const socialButtons = document.querySelectorAll('.social-btn');
 
             socialButtons.forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const platform = this.classList.contains('google') ? 'Google' : 'Facebook';
                     showMessage(`Redirecting to ${platform} login...`);
                     // Add actual social login implementation here
@@ -227,4 +254,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

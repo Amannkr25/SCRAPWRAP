@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -106,6 +107,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <nav>
@@ -179,7 +181,7 @@
             });
 
             // Handle user login form submission
-            document.getElementById('userLoginForm').addEventListener('submit', function(e) {
+            document.getElementById('userLoginForm').addEventListener('submit', async function (e) {
                 e.preventDefault();
                 const email = document.getElementById('userEmail').value;
                 const password = document.getElementById('userPassword').value;
@@ -191,17 +193,37 @@
                     email: email,
                     role: 'user'
                 };
+                // localStorage.setItem('user_details', JSON.stringify(userDetails));
 
-                localStorage.setItem('user_details', JSON.stringify(userDetails));
-
-                // Redirect to the return URL or home page
-                const urlParams = new URLSearchParams(window.location.search);
+                // Example using fetch
+                const res=await fetch('http://localhost:8000/login', {
+                    method: 'POST',
+                    credentials: 'include', // ⬅️ important: allows cookies to be sent and received
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                   response = await res.json();
+                console.log(response);
+                        if (response.status) {
+                            // maybe store user basic info if needed, NOT sensitive data
+                            console.log("Login successful");
+                            const urlParams = new URLSearchParams(window.location.search);
                 const returnUrl = urlParams.get('returnUrl') || 'index.html';
                 window.location.href = returnUrl + '?loggedIn=true';
+                        } else {
+                            console.error("Login failed:", data.message);
+                        }
+                   
+
+
+                // Redirect to the return URL or home page
+              
             });
 
             // Handle admin login form submission
-            document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            document.getElementById('adminLoginForm').addEventListener('submit', function (e) {
                 e.preventDefault();
                 const email = document.getElementById('adminEmail').value;
                 const password = document.getElementById('adminPassword').value;
@@ -214,7 +236,8 @@
                     role: 'admin'
                 };
 
-                localStorage.setItem('user_details', JSON.stringify(adminDetails));
+                // localStorage.setItem('user_details', JSON.stringify(adminDetails));
+
 
                 // Redirect to admin dashboard
                 window.location.href = 'admin-dashboard.html';
@@ -222,4 +245,5 @@
         });
     </script>
 </body>
-</html> 
+
+</html>
