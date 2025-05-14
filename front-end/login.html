@@ -163,10 +163,10 @@
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded',function() {
             const toggleOptions = document.querySelectorAll('.toggle-option');
             const loginForms = document.querySelectorAll('.login-form');
-
+           
            
             toggleOptions.forEach(option => {
                 option.addEventListener('click', function() {
@@ -210,6 +210,7 @@
                     // maybe store user basic info if needed, NOT sensitive data
                     console.log("Login successful");
                     localStorage.setItem('user_details', JSON.stringify(response.user));
+                    sessionStorage.setItem('sessionActive', 'true');
                     const urlParams = new URLSearchParams(window.location.search);
                     const returnUrl = urlParams.get('returnUrl') || 'index.html';
                     window.location.href = returnUrl + '?loggedIn=true';

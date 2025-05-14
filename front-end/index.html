@@ -286,7 +286,28 @@
 
     <script src="script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
+
+             const sessionActive = sessionStorage.getItem('sessionActive');
+            if(!sessionActive){
+                const res = await fetch("http://localhost:8000/login/logout", {
+                    method: 'POST',
+                    credentials: 'include', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }});
+                      const lastRes= await res.json();
+
+                if(lastRes)
+                {
+                    localStorage.removeItem('user_details');
+
+                }
+                else
+                {
+                    console.error("Logout failed:", lastRes.message);
+                }
+            }
             const schedulePickupBtn = document.getElementById('schedulePickupBtn');
             const authModal = document.getElementById('authModal');
             const closeModal = document.querySelector('.close-modal');
@@ -342,6 +363,7 @@
                 if(lastRes)
                 {
                     localStorage.removeItem('user_details');
+                    sessionStorage.removeItem('sessionActive');
                     window.location.href = 'login.html';
 
                 }
