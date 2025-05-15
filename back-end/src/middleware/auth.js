@@ -1,15 +1,18 @@
 const { getSession } = require('../auth/sessionId');
-
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 const adminMiddleware = async (req, res, next) => {
     try {
-        if (!req.user || req.user.role !== 'admin') {
-            return res.status(403).json({
+        const session_token = req.cookies.session_token;
+        if (!session_token) {
+            return res.status(401).json({
                 success: false,
-                message: 'Access denied. Admin privileges required.'
+                message: 'No session,'
             });
         }
 
-        next();
+
+
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -30,17 +33,13 @@ const authMiddleware = async (req, res, next) => {
             });
         }
 
-        const sessionUser = getSession(sessionToken);
-
-        if (!sessionUser) {
-            return res.status(401).json({
-                success: false,
-                message: 'Invalid session'
-            });
+        try {
+            const decoded = jwt.verify(sessionToken, "radha");
+            req.user = decoded;  // decoded contains id, email, role
+            next();
+        } catch (err) {
+            return res.status(401).json({ message: "Invalid token" });
         }
-
-        req.user = sessionUser;
-        next();
     } catch (error) {
         res.status(500).json({
             success: false,
@@ -50,7 +49,15 @@ const authMiddleware = async (req, res, next) => {
     }
 };
 
-module.exports={
+const isAdmin=(req,res,next)=>{
+
+    if(req.user.role!="admin")
+        return res.status(405).json({messege:"unAuthorized user"});
+    next();
+}
+
+module.exports = {
     authMiddleware,
-    adminMiddleware
+    adminMiddleware,
+    isAdmin
 }

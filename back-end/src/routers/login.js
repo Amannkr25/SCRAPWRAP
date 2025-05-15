@@ -1,6 +1,7 @@
 const express =require("express");
 const {Users} = require("../models/user")
 const bcrypt=require("bcrypt");
+const jwt=require("jsonwebtoken");
 const {setSession,getSession,destroySession}=require("../auth/sessionId")
 // import { v4 as uuidv4 } from 'uuid';
 const shortid=require("shortid")
@@ -27,9 +28,10 @@ loginRoute.post('/',async(req,res)=>{
     {
         return res.status(404).json({status:false,messege:"wrong password"});
     }
-    const sessionToken = shortid.generate();
-    setSession(sessionToken,user);
     
+    // const sessionToken = shortid.generate();
+    // setSession(sessionToken,user);
+    const sessionToken = jwt.sign({...user}, "radha", { expiresIn: '1h' });
     res.cookie('session_token', sessionToken, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
@@ -40,7 +42,7 @@ loginRoute.post('/',async(req,res)=>{
 })
 loginRoute.post('/logout', (req, res) => {
     const token = req.cookies.session_token;
-    destroySession(token); // Your function to remove it
+    // destroySession(token); // Your function to remove it
     res.clearCookie('session_token');
     res.status(200).json({ status: true, message: "Logged out" });
 });
