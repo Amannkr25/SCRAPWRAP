@@ -49,8 +49,7 @@ const wasteTypeSchema = new mongoose.Schema({
 });
 
 // Index for efficient querying
-wasteTypeSchema.index({ category: 1, isActive: 1 });
-wasteTypeSchema.index({ name: 1 }, { unique: true });
+
 
 const WasteType = mongoose.model('wasteType', wasteTypeSchema);
 

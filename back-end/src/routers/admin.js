@@ -8,7 +8,14 @@ const admin=express.Router();
 
 admin.post('/',(req,res)=>{
 
+
     res.status(200).json({status:true,messege:"come In"})
+})
+
+admin.post('/addWaste',(req,res)=>{
+
+    
+
 })
 
 module.exports=admin

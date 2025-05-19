@@ -10,7 +10,18 @@ const adminMiddleware = async (req, res, next) => {
                 message: 'No session,'
             });
         }
-
+         try {
+            const decoded = jwt.verify(sessionToken, process.env.SECRET_key);
+            req.user = decoded;  // decoded contains id, email, role
+            if(req.user.role=="admin")
+            next();
+            else
+            {
+                return res.json({ status: false,message: "not permitted" });
+            }
+        } catch (err) {
+            return res.status(401).json({ message: "Invalid token" });
+        }
 
 
     } catch (error) {
@@ -34,7 +45,7 @@ const authMiddleware = async (req, res, next) => {
         }
 
         try {
-            const decoded = jwt.verify(sessionToken, "radha");
+            const decoded = jwt.verify(sessionToken, process.env.SECRET_key);
             req.user = decoded;  // decoded contains id, email, role
             next();
         } catch (err) {

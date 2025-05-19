@@ -196,13 +196,14 @@
                 };
                 
                 // Example using fetch
+
                 const res=await fetch('http://localhost:8000/login', {
                     method: 'POST',
                     credentials: 'include', // ⬅️ important: allows cookies to be sent and received
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ email, password })
+                    body: JSON.stringify({ email, password,role:"users" })
                 });
                 response = await res.json();
                 console.log(response);
@@ -225,7 +226,7 @@
             });
 
             // Handle admin login form submission
-            document.getElementById('adminLoginForm').addEventListener('submit', function (e) {
+            document.getElementById('adminLoginForm').addEventListener('submit',async function (e) {
                 e.preventDefault();
                 const email = document.getElementById('adminEmail').value;
                 const password = document.getElementById('adminPassword').value;
@@ -239,6 +240,31 @@
                 };
 
                 // localStorage.setItem('user_details', JSON.stringify(adminDetails));
+
+
+                
+                const res=await fetch('http://localhost:8000/login', {
+                    method: 'POST',
+                    credentials: 'include', // ⬅️ important: allows cookies to be sent and received
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password,role:"admin" })
+                });
+                response = await res.json();
+                console.log(response);
+                if (response.status) {
+                    // maybe store user basic info if needed, NOT sensitive data
+                    console.log("Login successful");
+                    localStorage.setItem('user_details', JSON.stringify(response.user));
+                    sessionStorage.setItem('sessionActive', 'true');
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const returnUrl = urlParams.get('returnUrl') || 'index.html';
+                    window.location.href = returnUrl + '?loggedIn=true';
+                        } else {
+                            console.error("Login failed:", data.message);
+                        }
+                   
 
 
                 // Redirect to admin dashboard

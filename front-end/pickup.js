@@ -1,16 +1,18 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function () {
     // Check authentication status
     const userDetails = JSON.parse(localStorage.getItem('user_details'));
     const authRequired = document.querySelector('.auth-required');
     const pickupFormContainer = document.getElementById('pickupFormContainer');
     const loginLink = document.getElementById('loginLink');
     const registerLink = document.getElementById('registerLink');
+    const conatinerWaste = document.querySelector('.waste-types');
+
 
     if (!userDetails) {
         // User not logged in
         authRequired.style.display = 'block';
         pickupFormContainer.style.display = 'none';
-        
+
         // Update login/register links to include return URL
         const currentUrl = window.location.href;
         loginLink.href = `login.html?returnUrl=${encodeURIComponent(currentUrl)}`;
@@ -19,31 +21,73 @@ document.addEventListener('DOMContentLoaded', function() {
         // User is logged in
         authRequired.style.display = 'none';
         pickupFormContainer.style.display = 'block';
-        
+
         // Update navigation links
         loginLink.textContent = 'Logout';
         loginLink.href = '#';
-        loginLink.addEventListener('click',async function(e) {
+        loginLink.addEventListener('click', async function (e) {
             e.preventDefault();
-             const res=await fetch('http://localhost:8000/login/logout',{ method: 'POST',
-                    credentials: 'include', // ⬅️ important: allows cookies to be sent and received
+            const res = await fetch('http://localhost:8000/login/logout', {
+                method: 'POST',
+                credentials: 'include', // ⬅️ important: allows cookies to be sent and received
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            const lastRes = await res.json();
+
+            if (lastRes) {
+                localStorage.removeItem('user_details');
+                window.location.href = 'login.html';
+
+            }
+            else {
+                console.error("Logout failed:", lastRes.message);
+            }
+        });
+
+
+        async function wasteInfo() {
+            try {
+                const res = await fetch('http://localhost:8000/waste/types', {
+                    method: 'GET',
+                    credentials: 'include',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                })
-                const lastRes= await res.json();
+                });
 
-                if(lastRes)
-                {
-                    localStorage.removeItem('user_details');
-                    window.location.href = 'login.html';
+                const lastRes = await res.json();
 
+                if (lastRes && lastRes.wasteTypes) {
+                    localStorage.setItem('allWaste', JSON.stringify(lastRes.wasteTypes));
+                } else {
+                    console.error("Error:", lastRes.message);
                 }
-                else
-                {
-                    console.error("Logout failed:", lastRes.message);
-                }
+            } catch (err) {
+                console.error("Fetch error:", err);
+            }
+        }
+
+        if (!localStorage.getItem('allWaste')) {
+            await wasteInfo(); // use await inside async context or wrap this block in an async IIFE
+        }
+
+        const waste = JSON.parse(localStorage.getItem('allWaste'));
+        const containerWaste = document.getElementById("containerWaste"); // Fix this ID
+    //    containerWaste.innerHTML = ""; // clear previous content if any
+
+        waste.forEach((a) => {
+            containerWaste.innerHTML += `
+        <div class="waste-type">
+            <input type="checkbox" id="${a._id}" name="wasteType" value="${a._id}">
+            <label for="${a._id}">
+                <i class="fas fa-bottle-water"></i>
+                ${a.name}
+            </label>
+        </div>`;
         });
+
 
         // Pre-fill user details
         document.getElementById('userName').value = userDetails.name;
@@ -54,9 +98,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Schedule Pickup Form
     const pickupForm = document.getElementById('pickupForm');
     if (pickupForm) {
-        pickupForm.addEventListener('submit', function(e) {
+        pickupForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Get form data
             const formData = {
                 userName: document.getElementById('userName').value,
@@ -73,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Generate pickup ID
             const pickupId = 'SW' + Date.now().toString().slice(-6);
-            
+
             // Save pickup details to localStorage
             const pickupDetails = {
                 ...formData,
@@ -98,11 +142,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Tracking Form
     const trackingForm = document.getElementById('trackingForm');
     if (trackingForm) {
-        trackingForm.addEventListener('submit', function(e) {
+        trackingForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const pickupId = this.querySelector('#pickupId').value.trim();
-            
+
             if (!pickupId) {
                 showError('Please enter a valid pickup ID');
                 return;
@@ -133,10 +177,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Update pickup details
                 document.getElementById('pickupId').textContent = pickupId;
-                document.getElementById('pickupDate').textContent = new Date(pickupDetails.pickupDate).toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric' 
+                document.getElementById('pickupDate').textContent = new Date(pickupDetails.pickupDate).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
                 });
                 document.getElementById('pickupTime').textContent = pickupDetails.pickupTime;
                 document.getElementById('wasteTypes').textContent = pickupDetails.wasteTypes.join(', ');
@@ -146,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('pickupInstructions').textContent = pickupDetails.instructions || 'None';
 
                 // Add click handler for track pickup button
-                document.getElementById('trackPickup').addEventListener('click', function(e) {
+                document.getElementById('trackPickup').addEventListener('click', function (e) {
                     e.preventDefault();
                     window.location.href = `track-pickup.html?id=${pickupId}`;
                 });
@@ -200,16 +244,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'error-message';
         errorDiv.textContent = message;
-        
+
         const form = document.querySelector('.pickup-form, .tracking-form');
         const existingError = form.querySelector('.error-message');
-        
+
         if (existingError) {
             existingError.remove();
         }
-        
+
         form.insertBefore(errorDiv, form.firstChild);
-        
+
         setTimeout(() => {
             errorDiv.remove();
         }, 3000);
@@ -219,16 +263,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const successDiv = document.createElement('div');
         successDiv.className = 'success-message';
         successDiv.textContent = message;
-        
+
         const form = document.querySelector('.pickup-form, .tracking-form');
         const existingMessage = form.querySelector('.success-message');
-        
+
         if (existingMessage) {
             existingMessage.remove();
         }
-        
+
         form.insertBefore(successDiv, form.firstChild);
-        
+
         setTimeout(() => {
             successDiv.remove();
         }, 3000);
@@ -236,12 +280,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function simulatePickupScheduling(data) {
         showSuccess('Scheduling your pickup...');
-        
+
         // Simulate API call delay
         setTimeout(() => {
             // Generate a random pickup ID
             const pickupId = 'SW' + Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
-            
+
             // Store pickup data in localStorage
             const pickupData = {
                 id: pickupId,
@@ -249,9 +293,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 status: 'scheduled',
                 createdAt: new Date().toISOString()
             };
-            
+
             localStorage.setItem(`pickup_${pickupId}`, JSON.stringify(pickupData));
-            
+
             // Redirect to confirmation page with the pickup ID
             window.location.href = `pickup-confirmation.html?id=${pickupId}`;
         }, 1500);
@@ -268,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Simulate API call delay
         setTimeout(() => {
             const pickupData = JSON.parse(localStorage.getItem(`pickup_${pickupId}`));
-            
+
             if (!pickupData) {
                 trackingResult.innerHTML = '<div class="error-message">No pickup found with this ID</div>';
                 return;
@@ -335,7 +379,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check for pickup ID in URL
     const urlParams = new URLSearchParams(window.location.search);
     const pickupId = urlParams.get('id');
-    
+
     if (pickupId && document.getElementById('trackingForm')) {
         document.getElementById('pickupId').value = pickupId;
         simulateTrackingLookup(pickupId);
