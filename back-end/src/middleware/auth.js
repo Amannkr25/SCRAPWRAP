@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const adminMiddleware = async (req, res, next) => {
     try {
+        // console.log(req.cookies.session_token)
         const session_token = req.cookies.session_token;
         if (!session_token) {
             return res.status(401).json({
@@ -11,8 +12,8 @@ const adminMiddleware = async (req, res, next) => {
             });
         }
          try {
-            const decoded = jwt.verify(sessionToken, process.env.SECRET_key);
-            req.user = decoded;  // decoded contains id, email, role
+            const decoded = jwt.verify(session_token, process.env.SECRET_key);
+            req.user = decoded._doc;  // decoded contains id, email, role
             if(req.user.role=="admin")
             next();
             else
@@ -46,7 +47,7 @@ const authMiddleware = async (req, res, next) => {
 
         try {
             const decoded = jwt.verify(sessionToken, process.env.SECRET_key);
-            req.user = decoded;  // decoded contains id, email, role
+            req.user = decoded._doc;  // decoded contains id, email, role
             next();
         } catch (err) {
             return res.status(401).json({ message: "Invalid token" });

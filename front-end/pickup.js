@@ -47,36 +47,6 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
 
 
-        async function wasteInfo() {
-            try {
-                const res = await fetch('http://localhost:8000/waste/types', {
-                    method: 'GET',
-                    credentials: 'include',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                });
-
-                const lastRes = await res.json();
-
-                if (lastRes && lastRes.wasteTypes) {
-                    localStorage.setItem('allWaste', JSON.stringify(lastRes.wasteTypes));
-                } else {
-                    console.error("Error:", lastRes.message);
-                }
-            } catch (err) {
-                console.error("Fetch error:", err);
-            }
-        }
-
-        if (!localStorage.getItem('allWaste')) {
-            await wasteInfo(); // use await inside async context or wrap this block in an async IIFE
-        }
-
-        const waste = JSON.parse(localStorage.getItem('allWaste'));
-        const containerWaste = document.getElementById("containerWaste"); // Fix this ID
-    //    containerWaste.innerHTML = ""; // clear previous content if any
-
         waste.forEach((a) => {
             containerWaste.innerHTML += `
         <div class="waste-type">

@@ -568,41 +568,76 @@ td {
     }
 }
 
-.stat-card, .recent-activity, .warehouse-status, .recent-transactions {
-    animation: fadeIn 0.5s ease-out;
-} 
-.add-waste-type {
-    margin-top: 2rem;
-    background: #fff;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.waste-form-container {
+    width: auto;
+    
+    
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", sans-serif;
+    color: #333;
 }
 
-.waste-form .form-group {
-    margin-bottom: 1rem;
+.waste-form-container h2 {
+    margin-bottom: 24px;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    color: #2c3e50;
 }
 
-.waste-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
+form .form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
 }
 
-.waste-form input,
-.waste-form select,
-.waste-form textarea {
-    width: 100%;
-    padding: 0.5rem;
+form .form-group label {
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+form .form-group input[type="text"],
+form .form-group input[type="number"],
+form .form-group input[type="url"],
+form .form-group textarea,
+form .form-group select {
+    padding: 10px 14px;
     border: 1px solid #ccc;
-    border-radius: 0.5rem;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border-color 0.3s;
 }
 
-.submit-btn {
-    background: #28a745;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
+form .form-group input:focus,
+form .form-group textarea:focus,
+form .form-group select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
 }
+
+form .form-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+

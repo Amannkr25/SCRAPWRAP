@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {authMiddleware} = require('../middleware/auth');
+const {authMiddleware,adminMiddleware} = require('../middleware/auth');
 const WasteType = require('../models/wasteType');
 
 // Get all waste types
@@ -45,16 +45,17 @@ router.get('/types/:id', async (req, res) => {
 });
 
 // Add new waste type (admin only)
-router.post('/types', authMiddleware, async (req, res) => {
+router.post('/AddTypes', adminMiddleware, async (req, res) => {
     try {
-        const { name, description, pricePerKg, imageUrl, category } = req.body;
+        const { name, description, pricePerKg, imageUrl, category,isActive,processingInstructions,environmentalImpact,recyclingProcess,benefits,restrictions,createdBy } = req.body;
 
         const wasteType = new WasteType({
             name,
             description,
+            category,
             pricePerKg,
             imageUrl,
-            category
+            isActive,processingInstructions,environmentalImpact,recyclingProcess,benefits,restrictions,createdBy
         });
 
         await wasteType.save();

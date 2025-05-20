@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="admin-dashboard.css">
 </head>
+
 <body class="admin-body">
     <div class="admin-container">
         <!-- Sidebar -->
@@ -228,92 +230,100 @@
                     </div>
                 </div>
             </div>
-            <div class="add-waste-type">
-    <div class="activity-header">
-        <h2>Add New Waste Type</h2>
-    </div>
-    <form id="wasteForm" class="waste-form">
+            <div class="waste-form-container">
+    <h2>Add New Waste Type</h2>
+    <form id="wasteForm">
         <div class="form-group">
-            <label for="name">Name *</label>
-            <input type="text" id="name" required />
+            <label for="name">Waste Name</label>
+            <input type="text" id="name" name="name" required />
         </div>
+
         <div class="form-group">
-            <label for="description">Description *</label>
-            <textarea id="description" required></textarea>
+            <label for="description">Description</label>
+            <textarea id="description" name="description" required></textarea>
         </div>
+
         <div class="form-group">
-            <label for="category">Category *</label>
-            <select id="category" required>
-                <option value="">Select</option>
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                <option value="">Select Category</option>
                 <option value="plastic">Plastic</option>
                 <option value="paper">Paper</option>
                 <option value="metal">Metal</option>
                 <option value="glass">Glass</option>
                 <option value="organic">Organic</option>
-                <option value="e-waste">E-waste</option>
+                <option value="e-waste">E-Waste</option>
                 <option value="hazardous">Hazardous</option>
             </select>
         </div>
+
         <div class="form-group">
-            <label for="pricePerKg">Price per Kg *</label>
-            <input type="number" id="pricePerKg" min="0" required />
+            <label for="pricePerKg">Price per Kg (₹)</label>
+            <input type="number" id="pricePerKg" name="pricePerKg" min="0" required />
         </div>
+
         <div class="form-group">
-            <label for="imageUrl">Image URL *</label>
-            <input type="url" id="imageUrl" required />
+            <label for="imageUrl">Image URL</label>
+            <input type="text" id="imageUrl" name="imageUrl" required />
         </div>
+
         <div class="form-group">
             <label for="processingInstructions">Processing Instructions</label>
-            <textarea id="processingInstructions"></textarea>
+            <textarea id="processingInstructions" name="processingInstructions" rows="3" placeholder="e.g. Handle with gloves, remove batteries, etc."></textarea>
         </div>
+
         <div class="form-group">
-            <label for="environmentalImpact">Environmental Impact *</label>
-            <textarea id="environmentalImpact" required></textarea>
+            <label for="environmentalImpact">Environmental Impact</label>
+            <textarea id="environmentalImpact" name="environmentalImpact" required></textarea>
         </div>
+
         <div class="form-group">
-            <label for="recyclingProcess">Recycling Process *</label>
-            <textarea id="recyclingProcess" required></textarea>
+            <label for="recyclingProcess">Recycling Process</label>
+            <textarea id="recyclingProcess" name="recyclingProcess" required></textarea>
         </div>
+
         <div class="form-group">
             <label for="benefits">Benefits (comma-separated)</label>
-            <input type="text" id="benefits" />
+            <input type="text" id="benefits" name="benefits" placeholder="e.g. reduces pollution, conserves energy" />
         </div>
+
         <div class="form-group">
             <label for="restrictions">Restrictions (comma-separated)</label>
-            <input type="text" id="restrictions" />
+            <input type="text" id="restrictions" name="restrictions" placeholder="e.g. not mixed with glass" />
         </div>
-        <div class="form-group">
-            <label>
-                <input type="checkbox" id="isActive" checked />
-                Active
-            </label>
+
+        <div  style="display: flex; font-size: larger ;gap:10px;">
+            <label  for="isActive">Active</label>
+            <input type="checkbox" id="isActive" name="isActive" checked />
         </div>
-        <button type="submit" class="submit-btn">Add Waste Type</button>
+
+        <button type="submit">Add Waste Type</button>
     </form>
 </div>
+
         </main>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded',async function() {
+        document.addEventListener('DOMContentLoaded', async function () {
             // Check if user is admin
             // const userDetails = JSON.parse(localStorage.getItem('user_details'));
             // if (!userDetails || userDetails.role !== 'admin') {
             //     window.location.href = 'login.html';
             //     return;
             // }
-            
-             const res=await fetch('http://localhost:8000/admin', {
-                    method: 'POST',
-                    credentials: 'include', // ⬅️ important: allows cookies to be sent and received
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
-                response = await res.json();
-                console.log(response);
-            
+
+            const res = await fetch('http://localhost:8000/admin', {
+                method: 'POST',
+                credentials: 'include', // ⬅️ important: allows cookies to be sent and received
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+            response = await res.json();
+            console.log(response);
+
 
             // Update admin name in header
             document.querySelector('.admin-profile span').textContent = userDetails.name;
@@ -321,7 +331,7 @@
 
             // Add click handlers for navigation links
             document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
                     document.querySelector('.nav-links a.active').classList.remove('active');
                     this.classList.add('active');
@@ -330,11 +340,11 @@
 
             // Add click handlers for action buttons
             document.querySelectorAll('.action-btn').forEach(button => {
-                button.addEventListener('click', function() {
+                button.addEventListener('click', function () {
                     const action = this.classList.contains('edit') ? 'edit' : 'delete';
                     const row = this.closest('tr');
                     const id = row.querySelector('td:first-child').textContent;
-                    
+
                     if (action === 'edit') {
                         // Implement edit functionality
                         console.log('Edit pickup:', id);
@@ -347,6 +357,86 @@
                 });
             });
         });
+
+
+
+        document.getElementById('wasteForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+    const userDetails = JSON.parse(localStorage.getItem('user_details'));
+
+        const formData = {
+            name: e.target.name.value,
+            description: e.target.description.value,
+            category: e.target.category.value,
+            pricePerKg: parseFloat(e.target.pricePerKg.value),
+            imageUrl: e.target.imageUrl.value,
+            isActive: e.target.isActive.checked,
+            processingInstructions: e.target.processingInstructions.value,
+            environmentalImpact: e.target.environmentalImpact.value,
+            recyclingProcess: e.target.recyclingProcess.value,
+            benefits: e.target.benefits.value.split(',').map(s => s.trim()),
+            restrictions: e.target.restrictions.value.split(',').map(s => s.trim()),
+            createdBy: userDetails?._id // Replace with actual admin user ID
+        };
+        console.log(formData);
+        // Send the form data to the server
+        const res = await fetch('http://localhost:8000/waste/AddTypes', {
+            method: 'POST',
+            credentials: 'include', // ⬅️ important: allows cookies to be sent and received
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        const result = await res.json();
+        console.log(result);
+        // e.target.reset();
+    });
+
     </script>
 </body>
-</html> 
+
+</html>
+
+<!-- 
+document.getElementById('wasteForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const userDetails = JSON.parse(localStorage.getItem('user_details'));
+
+    const data = {
+        name: document.getElementById('name').value,
+        description: document.getElementById('description').value,
+        category: document.getElementById('category').value,
+        pricePerKg: parseFloat(document.getElementById('pricePerKg').value),
+        imageUrl: document.getElementById('imageUrl').value,
+        processingInstructions: document.getElementById('processingInstructions').value,
+        environmentalImpact: document.getElementById('environmentalImpact').value,
+        recyclingProcess: document.getElementById('recyclingProcess').value,
+        benefits: document.getElementById('benefits').value.split(',').map(b => b.trim()).filter(b => b),
+        restrictions: document.getElementById('restrictions').value.split(',').map(r => r.trim()).filter(r => r),
+        isActive: document.getElementById('isActive').checked,
+        createdBy: userDetails?._id // Make sure _id is stored in localStorage
+    };
+
+    try {
+        const res = await fetch('http://localhost:8000/waste-type', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+            credentials: 'include'
+        });
+
+        const result = await res.json();
+        if (res.ok) {
+            alert('Waste type added successfully!');
+            this.reset();
+        } else {
+            alert(result.message || 'Error adding waste type.');
+        }
+    } catch (err) {
+        console.error(err);
+        alert('Failed to connect to the server.');
+    }
+}); -->
