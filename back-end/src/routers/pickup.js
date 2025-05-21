@@ -68,6 +68,24 @@ router.get('/history', authMiddleware, async (req, res) => {
     }
 });
 
+router.get('/history/upcoming', authMiddleware, async (req, res) => {
+    try {
+        const pickups = await Pickup.find({ user: req.user._id, status: 'scheduled'})
+            .sort({ createdAt: -1 });
+
+        res.json({
+            success: true,
+            pickups
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Error fetching pickup history',
+            error: error.message
+        });
+    }
+});
+
 // Get pickup details
 router.get('/:id', authMiddleware, async (req, res) => {
     try {

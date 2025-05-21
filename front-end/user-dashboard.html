@@ -177,7 +177,7 @@
                             <a href="#" class="view-all">View All</a>
                         </div>
                         <div class="pickup-list">
-                            <div class="pickup-item">
+                            <!-- <div class="pickup-item">
                                 <div class="pickup-icon">
                                     <i class="fas fa-truck"></i>
                                 </div>
@@ -198,7 +198,7 @@
                                     <span class="status scheduled">Scheduled</span>
                                 </div>
                                 <button class="action-btn cancel">Cancel</button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -262,13 +262,14 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded',async function() {
             // Check if user is logged in
             const userDetails = JSON.parse(localStorage.getItem('user_details'));
             if (!userDetails) {
                 window.location.href = 'login.html';
                 return;
             }
+
 
             // Update user name throughout the dashboard
             document.querySelectorAll('.user-name').forEach(element => {
@@ -277,11 +278,43 @@
             document.querySelector('.user-profile span').textContent = userDetails.name;
             document.querySelector('.user-sidebar .user-info h4').textContent = userDetails.name;
 
+             const res = await fetch("http://localhost:8000/pickup/history/upcoming", {
+                    method: 'GET',
+                    credentials: 'include', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }});
+                      const lastRes= await res.json();
+                        if(lastRes.success)
+                    {
+                        console.log(lastRes);
+                        const pickupList = document.querySelector('.pickup-list');
+                        pickupList.innerHTML = ''; // Clear existing items
+                        lastRes.pickups.forEach(pickup => {
+                            const pickupItem = document.createElement('div');
+                            pickupItem.className = 'pickup-item';
+                            pickupItem.innerHTML = `
+                                <div class="pickup-icon">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <div class="pickup-info">
+                                    <h4>Pickup #${pickup.pickupId}</h4>
+                                    <p>${new Date(pickup.pickupDate).toLocaleString()}</p>
+                                    <span class="status scheduled">Scheduled</span>
+                                </div>
+                                <button class="action-btn cancel">Cancel</button>
+                            `;
+                            pickupList.appendChild(pickupItem);
+                        });
+                    }
+            
+
             // Profile Section
             const profileLink = document.getElementById('profileLink');
             const profileSection = document.querySelector('.profile-section');
             const dashboardSection = document.querySelector('.dashboard-section');
             const editProfileBtn = document.getElementById('editProfileBtn');
+
 
             profileLink.addEventListener('click', function(e) {
                 e.preventDefault();

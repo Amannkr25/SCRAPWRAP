@@ -1,5 +1,62 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Get pickup details from localStorage
+      const userProfile = document.getElementById('userProfile');
+            const loginLink = document.getElementById('loginLink');
+            const registerLink = document.getElementById('registerLink');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const userName = document.querySelector('.user-name');
+
+            // Check if user is logged in
+            const userDetails = JSON.parse(localStorage.getItem('user_details'));
+
+            if (userDetails) {
+                // User is logged in
+                userProfile.style.display = 'flex';
+                loginLink.style.display = 'none';
+                registerLink.style.display = 'none';
+                userName.textContent = userDetails.name || 'User';
+            } else {
+                // User is not logged in
+                userProfile.style.display = 'none';
+                loginLink.style.display = 'block';
+                registerLink.style.display = 'block';
+            }
+
+            // Handle logout
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('user_details');
+                window.location.href = 'login.html';
+            });
+
+            // Update login/register links to include return URL
+            const currentUrl = window.location.href;
+            loginLink.href = `login.html?returnUrl=${encodeURIComponent(currentUrl)}`;
+            registerLink.href = `register.html?returnUrl=${encodeURIComponent(currentUrl)}`;
+
+            // Check if user just logged in
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('loggedIn') === 'true') {
+                // Show success message
+                const successMessage = document.createElement('div');
+                successMessage.className = 'success-message';
+                successMessage.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <span>Successfully logged in!</span>
+                `;
+                document.body.appendChild(successMessage);
+                setTimeout(() => {
+                    successMessage.classList.add('show');
+                }, 100);
+
+                // Remove message after 3 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                    setTimeout(() => {
+                        successMessage.remove();
+                    }, 300);
+                }, 3000);
+            }
     const pickupDetails = JSON.parse(localStorage.getItem('current_pickup'));
     
     if (pickupDetails) {
