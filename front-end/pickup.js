@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const registerLink = document.getElementById('registerLink');
     const conatinerWaste = document.querySelector('.waste-types');
 
-
+    // console.log(userDetails)
     if (!userDetails) {
         // User not logged in
         authRequired.style.display = 'block';
@@ -47,16 +47,16 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
 
 
-        waste.forEach((a) => {
-            containerWaste.innerHTML += `
-        <div class="waste-type">
-            <input type="checkbox" id="${a._id}" name="wasteType" value="${a._id}">
-            <label for="${a._id}">
-                <i class="fas fa-bottle-water"></i>
-                ${a.name}
-            </label>
-        </div>`;
-        });
+        // waste.forEach((a) => {
+        //     containerWaste.innerHTML += `
+        // <div class="waste-type">
+        //     <input type="checkbox" id="${a._id}" name="wasteType" value="${a._id}">
+        //     <label for="${a._id}">
+        //         <i class="fas fa-bottle-water"></i>
+        //         ${a.name}
+        //     </label>
+        // </div>`;
+        // });s
 
 
         // Pre-fill user details
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Schedule Pickup Form
     const pickupForm = document.getElementById('pickupForm');
     if (pickupForm) {
-        pickupForm.addEventListener('submit', function (e) {
+        pickupForm.addEventListener('submit',async function (e) {
             e.preventDefault();
 
             // Get form data
@@ -78,11 +78,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                 userPhone: document.getElementById('userPhone').value,
                 pickupDate: document.getElementById('pickupDate').value,
                 pickupTime: document.getElementById('pickupTime').value,
-                wasteTypes: Array.from(document.querySelectorAll('input[name="wasteType"]:checked')).map(input => input.value),
-                wasteWeight: document.getElementById('wasteWeight').value,
-                address: document.getElementById('address').value,
-                landmark: document.getElementById('landmark').value,
-                instructions: document.getElementById('instructions').value
+                wasteType: Array.from(document.querySelectorAll('input[name="wasteType"]:checked')).map(input => input.value),
+                quantity: document.getElementById('wasteWeight').value,
+                address: {street:document.getElementById('street').value,city:document.getElementById('city').value,state:document.getElementById('state').value,zipCode:document.getElementById('zipcode').value,landmark: document.getElementById('landmark').value,},
+                 specialInstructions: document.getElementById('instructions').value
             };
 
             // Generate pickup ID
@@ -96,16 +95,30 @@ document.addEventListener('DOMContentLoaded', async function () {
                 createdAt: new Date().toISOString()
             };
 
-            // Get existing pickups or initialize empty array
-            let pickups = JSON.parse(localStorage.getItem('pickups')) || [];
-            pickups.push(pickupDetails);
-            localStorage.setItem('pickups', JSON.stringify(pickups));
+            const res = await fetch("http://localhost:8000/pickup/schedule", {
+                    method: 'POST',
+                    credentials: 'include', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                     body: JSON.stringify({...pickupDetails})
+                
+                });
+                const lastRes= await res.json();
+                if(lastRes.success)
+                {
+                console.log(lastRes);
+                localStorage.setItem('current_pickup', JSON.stringify(lastRes.pickup));
+                window.location.href = `pickup-confirmation.html?id=${lastRes.pickup.pickupId}`;
 
+                }
+                
+
+            
+           
             // Store current pickup details for confirmation page
-            localStorage.setItem('current_pickup', JSON.stringify(pickupDetails));
 
             // Redirect to confirmation page
-            window.location.href = `pickup-confirmation.html?id=${pickupId}`;
         });
     }
 

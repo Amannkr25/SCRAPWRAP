@@ -3,9 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     const body = document.body;
-
+    alert(343);
     if (hamburger && navLinks) {
+        
         hamburger.addEventListener('click', function() {
+           
             // Toggle hamburger animation
             hamburger.classList.toggle('active');
             

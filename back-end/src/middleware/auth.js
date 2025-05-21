@@ -48,6 +48,7 @@ const authMiddleware = async (req, res, next) => {
         try {
             const decoded = jwt.verify(sessionToken, process.env.SECRET_key);
             req.user = decoded._doc;  // decoded contains id, email, role
+            console.log(req.user);
             next();
         } catch (err) {
             return res.status(401).json({ message: "Invalid token" });

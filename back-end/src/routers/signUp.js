@@ -12,10 +12,10 @@ route.post('/',async(req,res)=>{
 
         const bool=await Users.findOne({ $or: [{ email: email }, { phone: phone }] })
         if(bool)
-            res.status(409).json({status:false,messege:"user already exited"})
+           return res.status(409).json({status:false,messege:"user already exited"})
     }catch(err)
     {
-        res.status(500).json({status:false,messege :"error in finding user"});
+        return res.status(500).json({status:false,messege :"error in finding user"});
     }
 
     try
@@ -23,11 +23,11 @@ route.post('/',async(req,res)=>{
         const user=new Users({name,email,phone,password});
         await user.save();
 
-        res.status(201).json({status:true,user:user,messege:"created successfully"});
+       return res.status(201).json({status:true,user:user,messege:"created successfully"});
     }
     catch(error)
     {
-        res.status(400).json({status:false,error:error,messege:"not created successfully"})
+       return res.status(400).json({status:false,error:error,messege:"not created successfully"})
     }
 
 

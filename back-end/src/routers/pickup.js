@@ -12,11 +12,14 @@ router.post('/schedule', authMiddleware, async (req, res) => {
             address,
             wasteType,
             quantity,
-            specialInstructions
+            specialInstructions,
+            pickupId
         } = req.body;
 
+        console.log(wasteType,quantity,address.zipCode)
         const pickup = new Pickup({
-            user: req.user.userId,
+            user: req.user._id,
+            pickupId,
             pickupDate,
             pickupTime,
             address,
@@ -25,13 +28,17 @@ router.post('/schedule', authMiddleware, async (req, res) => {
             specialInstructions,
             status: 'scheduled'
         });
-
         await pickup.save();
 
         res.status(201).json({
             success: true,
             message: 'Pickup scheduled successfully',
-            pickup
+            pickup: { 
+                ...pickup.toObject(),
+                userName: req.user.name,
+                userEmail: req.user.email,
+                userPhone: req.user.phone
+            }
         });
     } catch (error) {
         res.status(500).json({

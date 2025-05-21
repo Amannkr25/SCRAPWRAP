@@ -22,16 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update waste types
         const wasteTypesContainer = document.getElementById('confirmationWasteTypes');
-        wasteTypesContainer.innerHTML = pickupDetails.wasteTypes.map(type => {
+        wasteTypesContainer.innerHTML = pickupDetails.wasteType.map(type => {
             const icon = getWasteTypeIcon(type);
             return `<span class="waste-type-tag"><i class="${icon}"></i> ${type}</span>`;
         }).join('');
         
         // Update other details
-        document.getElementById('confirmationWeight').textContent = `${pickupDetails.wasteWeight} kg`;
-        document.getElementById('confirmationAddress').textContent = pickupDetails.address;
-        document.getElementById('confirmationLandmark').textContent = pickupDetails.landmark || 'Not specified';
-        document.getElementById('confirmationInstructions').textContent = pickupDetails.instructions || 'None';
+        document.getElementById('confirmationWeight').textContent = `${pickupDetails.quantity} kg`;
+        document.getElementById('confirmationAddress').textContent =`${Object.entries(pickupDetails.address).map(entry=>`${entry[0]}: ${entry[1]}\n`).join(" || ")}`;
+        document.getElementById('confirmationLandmark').textContent = pickupDetails.address.landmark || 'Not specified';
+        document.getElementById('confirmationInstructions').textContent = pickupDetails.specialInstructions || 'None';
         
         // Add track pickup button click handler
         document.getElementById('trackPickupBtn').addEventListener('click', function() {

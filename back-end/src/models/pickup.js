@@ -6,6 +6,10 @@ const pickupSchema = new mongoose.Schema({
         ref: 'user',
         required: true
     },
+    pickupId:{
+        type:String,
+        required:true
+    },
     pickupDate: {
         type: Date,
         required: true
@@ -33,11 +37,16 @@ const pickupSchema = new mongoose.Schema({
         },
         landmark: String
     },
+    // wasteType: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'wasteType',
+    //     required: true
+    // },
     wasteType: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'wasteType',
-        required: true
-    },
+    type: [{type:String}],
+        // enum: ['plastic', 'paper', 'metal', 'glass', 'organic', 'e-waste', 'hazardous'],
+    required: true
+},
     quantity: {
         type: Number,
         required: true,
@@ -69,8 +78,6 @@ const pickupSchema = new mongoose.Schema({
 });
 
 // Index for efficient querying
-pickupSchema.index({ user: 1, status: 1 });
-pickupSchema.index({ pickupDate: 1, status: 1 });
 
 const Pickup = mongoose.model('pickup', pickupSchema);
 

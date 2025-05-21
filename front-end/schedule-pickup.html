@@ -144,21 +144,40 @@
                     </div>
                 </div>
 
-                <div class="form-section">
-                    <h3>Location Details</h3>
-                    <div class="form-group">
-                        <label for="address">Full Address</label>
-                        <textarea id="address" name="address" rows="3" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="landmark">Landmark (Optional)</label>
-                        <input type="text" id="landmark" name="landmark">
-                    </div>
-                    <div class="form-group">
-                        <label for="instructions">Special Instructions</label>
-                        <textarea id="instructions" name="instructions" rows="2" placeholder="Any specific instructions for the pickup team"></textarea>
-                    </div>
-                </div>
+               <div class="form-section">
+  <h3>Location Details</h3>
+
+  <div class="form-group">
+    <label for="street">Street</label>
+    <input type="text" id="street" name="street" required>
+  </div>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" id="city" name="city" required>
+  </div>
+
+  <div class="form-group">
+    <label for="state">State</label>
+    <input type="text" id="state" name="state" required>
+  </div>
+
+  <div class="form-group">
+    <label for="zipcode">Zip Code</label>
+    <input type="text" id="zipcode" name="zipcode" required>
+  </div>
+
+  <div class="form-group">
+    <label for="landmark">Landmark (Optional)</label>
+    <input type="text" id="landmark" name="landmark">
+  </div>
+
+  <div class="form-group">
+    <label for="instructions">Special Instructions</label>
+    <textarea id="instructions" name="instructions" rows="2" placeholder="Any specific instructions for the pickup team"></textarea>
+  </div>
+</div>
+
 
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Schedule Pickup</button>
